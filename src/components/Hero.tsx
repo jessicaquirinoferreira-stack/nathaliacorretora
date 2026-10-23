@@ -38,7 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ settings, onSearch, onExploreClick }
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2200&q=85"
-          alt="Arquitetura de Alto Padrão - Nathalia Robadey Imóveis"
+          alt="Arquitetura Residencial - Nathalia Robadey Imóveis"
           className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C] via-[#0B192C]/80 to-[#0B192C]/50" />
@@ -118,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ settings, onSearch, onExploreClick }
                 className="w-full bg-[#0B192C] border border-slate-700 focus:border-[#C5A059] rounded-sm px-3 py-2.5 text-xs text-white focus:outline-none transition-colors"
               >
                 <option value="all">Todos os tipos</option>
-                <option value="casa">Casa de Alto Padrão</option>
+                <option value="casa">Casa Residencial</option>
                 <option value="cobertura">Cobertura</option>
                 <option value="apartamento">Apartamento</option>
                 <option value="sitio">Sítio / Chácara</option>

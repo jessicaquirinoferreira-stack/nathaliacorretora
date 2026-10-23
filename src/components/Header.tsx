@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ settings, activeTab, onNavigate 
                 NATHALIA ROBADEY
               </span>
               <span className="font-serif-luxury italic text-xs sm:text-sm tracking-[0.22em] text-[#C5A059] font-medium uppercase mt-0.5">
-                Imóveis de Alto Padrão
+                Imóveis Residenciais
               </span>
             </div>
           </button>

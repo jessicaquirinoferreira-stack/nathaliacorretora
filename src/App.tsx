@@ -325,7 +325,7 @@ export default function App() {
                 Catálogo Exclusivo
               </span>
               <h1 className="font-serif-luxury text-4xl sm:text-5xl text-[#0B192C] font-semibold">
-                Portfólio de Imóveis de Alto Padrão
+                Portfólio de Imóveis Residenciais
               </h1>
               <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 Explore residências selecionadas com rigor arquitetônico, vista panorâmica e solidez de investimento na Região Serrana e Rio de Janeiro.
@@ -506,7 +506,7 @@ export default function App() {
                   Como Comprar com <span className="italic font-normal text-[#C5A059]">Segurança & Curadoria</span>
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Adquirir um imóvel de alto padrão exige um olhar técnico sobre a documentação imobiliária, estado estrutural e potencial de liquidez futura. Nathalia Robadey atua ao seu lado em cada detalhe.
+                  Adquirir um imóvel exige um olhar técnico sobre a documentação imobiliária, estado estrutural e potencial de liquidez futura. Nathalia Robadey atua ao seu lado em cada detalhe.
                 </p>
 
                 <div className="space-y-4 pt-4 border-t border-slate-200 text-xs">

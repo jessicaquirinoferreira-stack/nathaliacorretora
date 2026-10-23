@@ -23,13 +23,13 @@ export const AboutSection: React.FC<InstitutionalProps> = ({ settings, onNavigat
               <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-2xl border-2 border-[#C5A059]/30 bg-[#0B192C]">
                 <img
                   src="https://i.postimg.cc/P5jCDLtx/Whats-App-Image-2026-10-23-at-13-15-02.jpg"
-                  alt="Nathalia Robadey - Consultora Imobiliária de Alto Padrão"
+                  alt="Nathalia Robadey - Consultora Imobiliária"
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white">
                   <span className="font-serif-luxury text-2xl font-semibold tracking-wide block">Nathalia Robadey</span>
-                  <span className="text-xs uppercase tracking-widest text-[#E5C989]">Especialista em Imóveis de Alto Padrão</span>
+                  <span className="text-xs uppercase tracking-widest text-[#E5C989]">Especialista Imobiliária</span>
                 </div>
               </div>
 
@@ -52,11 +52,11 @@ export const AboutSection: React.FC<InstitutionalProps> = ({ settings, onNavigat
             </h2>
 
             <blockquote className="border-l-2 border-[#C5A059] pl-4 italic text-slate-700 font-serif-luxury text-lg sm:text-xl">
-              "{settings.aboutQuote || 'Um imóvel de alto padrão não é apenas um espaço físico; é a expressão do seu estilo de vida e o legado da sua família.'}"
+              "{settings.aboutQuote || 'Um imóvel não é apenas um espaço físico; é a expressão do seu estilo de vida e o refúgio da sua família.'}"
             </blockquote>
 
             <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
-              {settings.aboutStory || 'Nathalia Robadey é especialista no mercado imobiliário premium e de alto padrão, oferecendo uma experiência sob medida para clientes exigentes que buscam residências de arquitetura primorosa, refúgios na serra e investimentos de solidez comprovada.'}
+              {settings.aboutStory || 'Nathalia Robadey é especialista no mercado imobiliário, oferecendo uma experiência sob medida para clientes que buscam residências aconchegantes, refúgios na serra e investimentos sólidos.'}
             </p>
 
             {/* Differential highlights grid */}

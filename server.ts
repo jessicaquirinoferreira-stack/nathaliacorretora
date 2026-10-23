@@ -836,7 +836,7 @@ app.post('/api/assistant/chat', async (req, res) => {
     try {
       const ai = new GoogleGenAI();
       const systemInstruction = `
-Você é a Assistente Virtual exclusiva de Nathalia Robadey Imóveis (corretora de imóveis de luxo e alto padrão na Região Serrana e Rio de Janeiro, com foco em Nova Friburgo, Mury, Cônego, Barra da Tijuca, etc.).
+Você é a Assistente Virtual de Nathalia Robadey Imóveis (especialista imobiliária na Região Serrana e Rio de Janeiro, com foco em Nova Friburgo, Mury, Cônego, Barra da Tijuca, etc.).
 WhatsApp oficial: +55 22 99931-5940.
 
 DIRETRIZES FUNDAMENTAIS:

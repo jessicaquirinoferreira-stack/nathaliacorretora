@@ -8,18 +8,18 @@ export const INITIAL_SETTINGS: SiteSettings = {
   email: "nathaliardmp@gmail.com",
   instagram: "@nathaliarobadey",
   address: "Região Serrana & Rio de Janeiro, RJ - Atendimento com hora marcada",
-  ctaWhatsappDefault: "Olá Nathalia, estou no seu site e gostaria de um atendimento exclusivo para imóveis de alto padrão.",
-  heroTitle: "Curadoria Imobiliária Exclusiva e Alto Padrão",
-  heroSubtitle: "Imóveis selecionados com sofisticação arquitetônica, discrição absoluta e assessoria jurídica completa para morar ou investir.",
+  ctaWhatsappDefault: "Olá Nathalia, estou no seu site e gostaria de atendimento para imóveis.",
+  heroTitle: "Curadoria Imobiliária Residencial & Lançamentos",
+  heroSubtitle: "Imóveis selecionados com excelente localização, conforto e assessoria completa para morar ou investir.",
   heroBadge: "Imóveis Selecionados & Atendimento Personalizado",
-  aboutStory: "Nathalia Robadey é especialista no mercado imobiliário premium e de alto padrão, oferecendo uma experiência sob medida para clientes exigentes que buscam residências de arquitetura primorosa, refúgios na serra e investimentos de solidez comprovada.\n\nCom atuação destacada na Região Serrana e no Estado do Rio de Janeiro, sua consultoria alia curadoria estética apurada, discrição ética absoluta e assessoria completa em todas as etapas de negociação.",
-  aboutQuote: "Um imóvel de alto padrão não é apenas um espaço físico; é a expressão do seu estilo de vida e o legado da sua família.",
-  aboutExperience: "Consultoria Imobiliária com atendimento humanizado, assessoria jurídica de ponta e conexão direta com as melhores oportunidades do mercado.",
+  aboutStory: "Nathalia Robadey é especialista no mercado imobiliário, oferecendo uma experiência sob medida para clientes que buscam residências confortáveis, refúgios na serra e investimentos sólidos.\n\nCom atuação destacada na Região Serrana e no Estado do Rio de Janeiro, sua consultoria alia curadoria apurada, ética absoluta e assessoria completa em todas as etapas de negociação.",
+  aboutQuote: "Um imóvel não é apenas um espaço físico; é a expressão do seu estilo de vida e o refúgio da sua família.",
+  aboutExperience: "Consultoria Imobiliária com atendimento humanizado, assessoria completa e conexão direta com as melhores oportunidades do mercado.",
   privacyPolicy: "A Nathalia Robadey Imóveis respeita a sua privacidade e está em total conformidade com a LGPD (Lei Geral de Proteção de Dados - Lei nº 13.709/2018). Todos os dados coletados através dos nossos formulários de contato, interesse e agendamento de visitas são utilizados exclusivamente para o atendimento imobiliário solicitado, com absoluto sigilo e nunca compartilhados com terceiros para fins de marketing sem sua prévia autorização.",
   cookiesPolicy: "Utilizamos cookies essenciais e de performance para garantir que você tenha a melhor experiência de navegação em nosso site, memorizar suas preferências de busca e analisar de forma anônima o tráfego do portal.",
   termsOfUse: "Os valores, disponibilidades e condições dos imóveis apresentados neste portal estão sujeitos a confirmação prévia e podem sofrer alterações sem aviso prévio. As fotografias e ilustrações são de propriedade da Nathalia Robadey Imóveis ou de seus respectivos parceiros comerciais.",
-  seoTitle: "Nathalia Robadey Imóveis | Imóveis de Alto Padrão e Lançamentos",
-  seoDescription: "Curadoria exclusiva de casas, coberturas e empreendimentos de luxo na Região Serrana e Rio de Janeiro com atendimento personalizado por Nathalia Robadey.",
+  seoTitle: "Nathalia Robadey Imóveis | Compra, Venda e Lançamentos",
+  seoDescription: "Curadoria de casas, coberturas, apartamentos e empreendimentos na Região Serrana e Rio de Janeiro com atendimento personalizado por Nathalia Robadey.",
   googleAnalyticsId: "",
   metaPixelId: "",
   primaryColor: "#0B192C",
@@ -29,36 +29,34 @@ export const INITIAL_SETTINGS: SiteSettings = {
 export const INITIAL_PROPERTIES: Property[] = [
   {
     id: "prop-001",
-    title: "Residência Arquitetônica Panorâmica no Vale dos Cristais",
-    slug: "residencia-arquitetonica-panoramica-vale-dos-cristais",
+    title: "Residência Panorâmica no Vale dos Cristais",
+    slug: "residencia-panoramica-vale-dos-cristais",
     referenceCode: "NRI-101",
-    description: "Espetacular residência em meio à natureza com projeto assinado por escritório premiado de arquitetura contemporânea. Ambientes totalmente integrados com pé-direito duplo de 6 metros, esquadrias do chão ao teto proporcionando iluminação natural e vista permanente para as montanhas. Área social com lareira ecológica suspensa, adega climatizada para 300 garrafas, cozinha gourmet com ilha em mármore Calacatta e varanda com piscina de borda infinita aquecida com deck em cumaru. Suíte master com closet duplo, sala de banho com hidromassagem e terraço privativo contemplativo.",
-    shortDescription: "Residência contemporânea assinada com pé-direito duplo, vista montanhas e piscina aquecida.",
+    description: "Espetacular residência em meio à natureza com projeto contemporâneo. Ambientes totalmente integrados com pé-direito duplo, esquadrias amplas proporcionando iluminação natural e vista permanente para as montanhas. Área social com lareira, cozinha integrada e varanda com piscina aquecida e deck. Suíte master com closet e terraço privativo.",
+    shortDescription: "Residência contemporânea com pé-direito duplo, vista para montanhas e piscina.",
     purpose: "venda",
     type: "casa",
     city: "Nova Friburgo",
     neighborhood: "Mury",
     address: "Condomínio Reserva da Serra",
     showAddress: false,
-    price: 3850000,
-    priceDisplay: "R$ 3.850.000",
-    condoFee: 1200,
-    iptu: 450,
-    usableArea: 480,
-    totalArea: 1850,
-    bedrooms: 4,
-    suites: 4,
-    bathrooms: 6,
-    parkingSpots: 4,
+    price: 1850000,
+    priceDisplay: "R$ 1.850.000",
+    condoFee: 600,
+    iptu: 350,
+    usableArea: 280,
+    totalArea: 1200,
+    bedrooms: 3,
+    suites: 2,
+    bathrooms: 3,
+    parkingSpots: 3,
     features: [
-      "Piscina aquecida com borda infinita",
-      "Espaço Gourmet com churrasqueira a gás",
-      "Adega climatizada para 300 rótulos",
-      "Lareira ecológica",
-      "Energia solar fotovoltaica instalada",
+      "Piscina aquecida",
+      "Espaço Gourmet com churrasqueira",
+      "Lareira",
       "Segurança 24h em condomínio fechado",
       "Pé-direito duplo",
-      "Automação de iluminação e climatização"
+      "Vista panorâmica"
     ],
     coverImage: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
     gallery: [
@@ -71,17 +69,7 @@ export const INITIAL_PROPERTIES: Property[] = [
       {
         id: "g2",
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-        title: "Living com Pé-Direito Duplo"
-      },
-      {
-        id: "g3",
-        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
-        title: "Área Gourmet Integrada"
-      },
-      {
-        id: "g4",
-        url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
-        title: "Suíte Master com Vista"
+        title: "Living Integrado"
       }
     ],
     status: "published",
@@ -90,40 +78,37 @@ export const INITIAL_PROPERTIES: Property[] = [
     isOpportunity: true,
     createdAt: "2026-10-15T10:00:00Z",
     updatedAt: "2026-10-20T14:30:00Z",
-    seoTitle: "Mansão Panorâmica à Venda em Mury | Nathalia Robadey Imóveis",
-    seoDescription: "Exclusiva residência de 4 suítes com piscina aquecida de borda infinita e vista permanente para as montanhas."
+    seoTitle: "Casa à Venda em Mury | Nathalia Robadey Imóveis",
+    seoDescription: "Residência de 3 quartos com piscina e vista para as montanhas em Nova Friburgo."
   },
   {
     id: "prop-002",
-    title: "Cobertura Linear Marítima com Terraço Panorâmico",
-    slug: "cobertura-linear-maritima-com-terraco-panoramico",
+    title: "Cobertura com Terraço Panorâmico",
+    slug: "cobertura-com-terraco-panoramico",
     referenceCode: "NRI-102",
-    description: "Imponente cobertura linear debruçada sobre o mar com 360m² de área privativa planejada para o máximo requinte. Amplo living em 3 ambientes com piso em mármore travertino navona levigado, sala de jantar integrada à varanda frontal mar. Terraço privativo com piscina suspensa em vidro, solarium em deck e espaço lounge com churrasqueira gourmet. Planta circular privilegiada com 4 amplas suítes, copa-cozinha planejada e dependência completa para funcionários.",
-    shortDescription: "Cobertura linear de frente com piscina de vidro no terraço e 4 suítes.",
+    description: "Imponente cobertura linear com excelente área privativa. Amplo living em dois ambientes integrado à varanda frontal. Terraço privativo com solarium e espaço gourmet com churrasqueira. Planta prática com 3 quartos (1 suíte), cozinha planejada e área de serviço.",
+    shortDescription: "Cobertura com terraço, churrasqueira e 3 quartos.",
     purpose: "venda",
     type: "cobertura",
     city: "Rio de Janeiro",
     neighborhood: "Barra da Tijuca",
     address: "Avenida Lúcio Costa",
     showAddress: false,
-    price: 6900000,
-    priceDisplay: "R$ 6.900.000",
-    condoFee: 3400,
-    iptu: 1100,
-    usableArea: 360,
-    totalArea: 420,
-    bedrooms: 4,
-    suites: 4,
-    bathrooms: 6,
-    parkingSpots: 4,
+    price: 2950000,
+    priceDisplay: "R$ 2.950.000",
+    condoFee: 1400,
+    iptu: 850,
+    usableArea: 220,
+    totalArea: 250,
+    bedrooms: 3,
+    suites: 1,
+    bathrooms: 3,
+    parkingSpots: 2,
     features: [
-      "Vista frontal definitiva para o mar",
-      "Piscina privativa em vidro",
-      "Terraço com solarium e lounge gourmet",
-      "Acabamentos em mármore importado",
-      "Portaria com controle biométrico e segurança armada",
-      "4 vagas cobertas na garagem",
-      "Elevador privativo com código de acesso"
+      "Terraço privativo com churrasqueira",
+      "Portaria 24h",
+      "2 vagas na garagem",
+      "Próximo à praia"
     ],
     coverImage: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
     gallery: [
@@ -132,16 +117,6 @@ export const INITIAL_PROPERTIES: Property[] = [
         url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
         title: "Terraço da Cobertura",
         isCover: true
-      },
-      {
-        id: "g6",
-        url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80",
-        title: "Living Social Frontal"
-      },
-      {
-        id: "g7",
-        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80",
-        title: "Cozinha com Ilha Central"
       }
     ],
     status: "published",
@@ -150,39 +125,37 @@ export const INITIAL_PROPERTIES: Property[] = [
     isOpportunity: false,
     createdAt: "2026-10-18T09:00:00Z",
     updatedAt: "2026-10-21T11:00:00Z",
-    seoTitle: "Cobertura Linear à Venda com Vista Mar | Nathalia Robadey Imóveis",
-    seoDescription: "Excepcional cobertura linear de 360m² com piscina de vidro e 4 suítes."
+    seoTitle: "Cobertura à Venda na Barra da Tijuca | Nathalia Robadey Imóveis",
+    seoDescription: "Cobertura de 3 quartos com terraço e excelente localização."
   },
   {
     id: "prop-003",
-    title: "Apartamento Boutique no Coração Nobre de Nova Friburgo",
-    slug: "apartamento-boutique-coracao-nobre-nova-friburgo",
+    title: "Apartamento no Coração de Nova Friburgo",
+    slug: "apartamento-coracao-nova-friburgo",
     referenceCode: "NRI-103",
-    description: "Unidade exclusiva em edifício boutique de apenas 8 apartamentos. Projeto arquitetônico de traços limpos e atemporais, marcenaria planejada de alto padrão e climatização em todos os cômodos. Living com varanda integrada, lareira a gás, 3 amplas suítes com persianas automatizadas e janelas com isolamento acústico térmico. Duas vagas soltas e depósito privativo na garagem.",
-    shortDescription: "Apartamento boutique com 3 suítes, varanda gourmet e alto padrão de acabamento.",
+    description: "Unidade exclusiva em edifício residencial tranquilo e bem localizado. Projeto moderno, armários planejados e boa iluminação natural. Living com varanda, 3 quartos (1 suíte), cozinha e área de serviço. Duas vagas de garagem.",
+    shortDescription: "Apartamento com 3 quartos, varanda e ótima localização.",
     purpose: "venda",
     type: "apartamento",
     city: "Nova Friburgo",
     neighborhood: "Cônego",
     address: "Rua das Camélias",
     showAddress: false,
-    price: 1450000,
-    priceDisplay: "R$ 1.450.000",
-    condoFee: 780,
-    iptu: 210,
-    usableArea: 175,
-    totalArea: 210,
+    price: 750000,
+    priceDisplay: "R$ 750.000",
+    condoFee: 480,
+    iptu: 150,
+    usableArea: 115,
+    totalArea: 135,
     bedrooms: 3,
-    suites: 3,
-    bathrooms: 4,
+    suites: 1,
+    bathrooms: 2,
     parkingSpots: 2,
     features: [
-      "Edifício exclusivo de baixa densidade",
-      "Varanda gourmet integrada",
-      "Isolamento acústico duplo",
-      "Marcenaria premium sob medida",
-      "Depósito privativo na garagem",
-      "Fechadura digital e portaria remota inteligente"
+      "Varanda",
+      "Móveis planejados",
+      "2 vagas na garagem",
+      "Portaria inteligente"
     ],
     coverImage: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
     gallery: [
@@ -191,11 +164,6 @@ export const INITIAL_PROPERTIES: Property[] = [
         url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
         title: "Living Integrado",
         isCover: true
-      },
-      {
-        id: "g9",
-        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80",
-        title: "Suíte Master Aconchegante"
       }
     ],
     status: "published",
@@ -204,52 +172,45 @@ export const INITIAL_PROPERTIES: Property[] = [
     isOpportunity: true,
     createdAt: "2026-10-19T14:00:00Z",
     updatedAt: "2026-10-22T16:00:00Z",
-    seoTitle: "Apartamento Boutique no Cônego | Nathalia Robadey Imóveis",
-    seoDescription: "Apartamento de alto padrão com 3 suítes e acabamentos impecáveis no bairro Cônego."
+    seoTitle: "Apartamento no Cônego | Nathalia Robadey Imóveis",
+    seoDescription: "Apartamento de 3 quartos com varanda no bairro Cônego."
   },
   {
     id: "prop-004",
-    title: "Chácara Equestre e Refúgio de Montanha em Macaé de Cima",
-    slug: "chacara-equestre-refugio-montanha-macae-de-cima",
+    title: "Chácara e Refúgio de Montanha em Macaé de Cima",
+    slug: "chacara-refugio-montanha-macae-de-cima",
     referenceCode: "NRI-104",
-    description: "Propriedade rural cinematográfica cercada por mata atlântica preservada e nascentes cristalinas de água mineral. Casa sede rústico-chique em alvenaria e madeira de lei com 5 dormitórios (3 suítes), fogão a lenha original restaurado, salão de jogos e varandão com vista deslumbrante das montanhas. Estrutura completa para cavalos com 4 cocheiras ventiladas, piquetes cercados, casa de caseiro independente e horta orgânica irrigada.",
-    shortDescription: "Refúgio de serra com 25.000m² de terreno, nascentes próprias e estrutura equestre.",
+    description: "Propriedade rural cercada por natureza preservada e nascentes. Casa sede aconchegante com 4 dormitórios (1 suíte), fogão a lenha, varandão com vista para as montanhas, pomar e horta.",
+    shortDescription: "Refúgio de serra com terreno espaçoso e nascentes.",
     purpose: "venda",
     type: "sitio",
     city: "Nova Friburgo",
     neighborhood: "Macaé de Cima",
     address: "Estrada Parque",
     showAddress: false,
-    price: 2400000,
-    priceDisplay: "R$ 2.400.000",
+    price: 1200000,
+    priceDisplay: "R$ 1.200.000",
     condoFee: 0,
-    iptu: 80,
-    usableArea: 420,
-    totalArea: 25000,
-    bedrooms: 5,
-    suites: 3,
-    bathrooms: 5,
-    parkingSpots: 6,
+    iptu: 60,
+    usableArea: 250,
+    totalArea: 10000,
+    bedrooms: 4,
+    suites: 1,
+    bathrooms: 3,
+    parkingSpots: 4,
     features: [
-      "Área de 25.000m² com nascentes de água pura",
-      "Casa sede colonial restaurada",
-      "4 cocheiras para cavalos e piquete",
-      "Piscina natural de água de nascente",
-      "Casa de caseiro independente",
-      "Horta orgânica e pomar com árvores frutíferas adultas"
+      "Terreno com 10.000m²",
+      "Nascentes de água",
+      "Pomar e horta",
+      "Fogão a lenha"
     ],
     coverImage: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
     gallery: [
       {
         id: "g10",
         url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
-        title: "Sede Principal e Paisagismo",
+        title: "Sede Principal",
         isCover: true
-      },
-      {
-        id: "g11",
-        url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
-        title: "Varanda com Vista para o Vale"
       }
     ],
     status: "published",
@@ -258,8 +219,8 @@ export const INITIAL_PROPERTIES: Property[] = [
     isOpportunity: true,
     createdAt: "2026-10-12T11:00:00Z",
     updatedAt: "2026-10-20T10:00:00Z",
-    seoTitle: "Chácara e Refúgio de Montanha em Macaé de Cima | Nathalia Robadey Imóveis",
-    seoDescription: "Propriedade rural com 25.000m² de natureza exuberante, nascentes próprias e sede impecável."
+    seoTitle: "Chácara em Macaé de Cima | Nathalia Robadey Imóveis",
+    seoDescription: "Propriedade rural com natureza exuberante em Nova Friburgo."
   }
 ];
 
@@ -272,76 +233,32 @@ export const INITIAL_DEVELOPMENTS: Development[] = [
     location: "Mury, Nova Friburgo - RJ",
     city: "Nova Friburgo",
     neighborhood: "Mury",
-    type: "Condomínio Fechado de Casas de Alto Padrão",
+    type: "Condomínio Fechado de Casas",
     status: "in_construction",
-    startingPrice: 1980000,
+    startingPrice: 980000,
     deliveryForecast: "Dezembro de 2027",
     unitsCount: "24 residências exclusivas",
-    description: "Um empreendimento desenhado para quem valoriza a tranquilidade da montanha sem abrir mão de alta tecnologia construtiva e segurança de padrão internacional. Lotes generosos a partir de 1.200m² com projetos arquitetônicos assinados, clube privativo com quadra de tênis de saibro, spa com sauna envidraçada e heliponto homologado.",
+    description: "Um empreendimento desenhado para quem valoriza a tranquilidade da montanha com segurança e conforto. Lotes generosos a partir de 800m², área de lazer com quadra poliesportiva e portaria 24 horas.",
     features: [
-      "Clube privativo com quadra de saibro",
-      "Spa com sauna úmida e seca envidraçada",
-      "Fiação subterrânea em todo o condomínio",
-      "Heliponto homologado",
-      "Trilhas ecológicas privativas",
-      "Portaria blindada e controle perimetral por câmeras térmicas"
+      "Área de lazer com quadra poliesportiva",
+      "Espaço de convivência",
+      "Trilhas ecológicas",
+      "Portaria 24 horas"
     ],
     coverImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
     gallery: [
       {
         id: "dg1",
         url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-        title: "Perspectiva do Clube e Piscina",
+        title: "Perspectiva do Condomínio",
         isCover: true
-      },
-      {
-        id: "dg2",
-        url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80",
-        title: "Residência Modelo"
       }
     ],
     isFeatured: true,
     order: 1,
-    ctaText: "Receber book e tabela de pré-lançamento",
-    seoTitle: "Reserva das Araucárias | Casas de Alto Padrão em Mury",
-    seoDescription: "Condomínio fechado com lotes a partir de 1.200m² e lazer completo na Região Serrana."
-  },
-  {
-    id: "dev-002",
-    title: "Palazzo Belvedere Alto Padrão",
-    slug: "palazzo-belvedere-alto-padrao",
-    developer: "Construtora Imperial",
-    location: "Centro Nobre, Nova Friburgo - RJ",
-    city: "Nova Friburgo",
-    neighborhood: "Centro",
-    type: "Edifício Residencial de Luxo",
-    status: "pre_launch",
-    startingPrice: 1250000,
-    deliveryForecast: "Março de 2028",
-    unitsCount: "16 unidades exclusivas",
-    description: "Sofisticação cosmopolita em uma localização nobre e reservada. Apartamentos de 3 e 4 suítes com plantas flexíveis, varandas com vista panorâmica da cidade e das montanhas, gerador full para todas as unidades e vagas com infraestrutura para recarga de veículos elétricos.",
-    features: [
-      "Apartamentos de 3 e 4 suítes",
-      "Gerador de energia full para as unidades",
-      "Ponto de recarga para carros elétricos em cada vaga",
-      "Academia com equipamentos de última geração",
-      "Espaço wine lounge climatizado",
-      "Bicicletário com oficina"
-    ],
-    coverImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      {
-        id: "dg3",
-        url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80",
-        title: "Fachada Arquitetônica",
-        isCover: true
-      }
-    ],
-    isFeatured: true,
-    order: 2,
-    ctaText: "Agendar apresentação exclusiva",
-    seoTitle: "Palazzo Belvedere | Empreendimento de Luxo em Nova Friburgo",
-    seoDescription: "Apartamentos exclusivos de 3 e 4 suítes no endereço mais desejado da cidade."
+    ctaText: "Receber book e tabela de preços",
+    seoTitle: "Reserva das Araucárias | Condomínio em Mury",
+    seoDescription: "Condomínio fechado com lotes e casas na Região Serrana."
   }
 ];
 
@@ -349,79 +266,35 @@ export const INITIAL_LANDING_PAGES: LandingPage[] = [
   {
     id: "lp-001",
     slug: "lancamento-reserva-araucarias",
-    title: "Lançamento Oficial: Reserva das Araucárias",
-    subtitle: "Viva o privilégio da exclusividade na Região Serrana",
+    title: "Lançamento: Reserva das Araucárias",
+    subtitle: "Viva com tranquilidade na Região Serrana",
     objective: "launch",
     status: "published",
     heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-    headline: "O refúgio definitivo de alto padrão na serra que você e sua família merecem.",
-    description: "Garanta condições especiais de tabela de pré-lançamento e escolha os melhores lotes do condomínio com vista privilegiada.",
-    whatsappCtaText: "Olá Nathalia, gostaria de receber a apresentação completa do Reserva das Araucárias com condições de pré-lançamento.",
+    headline: "O refúgio na serra que você e sua família merecem.",
+    description: "Garanta condições especiais de tabela de lançamento e escolha os melhores lotes.",
+    whatsappCtaText: "Olá Nathalia, gostaria de receber a apresentação completa do Reserva das Araucárias.",
     viewsCount: 142,
     leadsCount: 18,
     createdAt: "2026-10-15T08:00:00Z",
     updatedAt: "2026-10-22T10:00:00Z",
     seoTitle: "Lançamento Reserva das Araucárias | Nathalia Robadey",
-    seoDescription: "Receba material de pré-lançamento e consulte disponibilidade com a corretora Nathalia Robadey.",
+    seoDescription: "Consulte disponibilidade com a corretora Nathalia Robadey.",
     sections: [
       {
         id: "sec-1",
         type: "hero",
         title: "Reserva das Araucárias",
-        subtitle: "A união perfeita entre arquitetura contemporânea e a natureza exuberante de Nova Friburgo."
+        subtitle: "A união perfeita entre conforto e a natureza de Nova Friburgo."
       },
       {
         id: "sec-2",
         type: "features",
-        title: "Diferenciais Exclusivos",
+        title: "Diferenciais",
         items: [
-          "Lotes a partir de 1.200m² com topografia privilegiada",
-          "Quadra de tênis de saibro e clube com piscina aquecida",
-          "Fiação 100% subterrânea preservando o visual da serra",
-          "Segurança privada 24 horas com tecnologia perimetral"
-        ]
-      },
-      {
-        id: "sec-3",
-        type: "whatsapp_cta",
-        title: "Fale Diretamente com Nathalia Robadey",
-        content: "Receba o book digital completo, mapa de lotes disponíveis e plano de pagamento personalizado via WhatsApp."
-      }
-    ]
-  },
-  {
-    id: "lp-002",
-    slug: "avalie-seu-imovel",
-    title: "Avaliação Profissional de Imóveis de Alto Padrão",
-    subtitle: "Descubra o valor real do seu imóvel com quem é especialista no mercado",
-    objective: "sellers",
-    status: "published",
-    heroImage: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
-    headline: "Venda seu patrimônio com discrição, precisão de mercado e estratégia de marketing de alto padrão.",
-    description: "Nossa metodologia de avaliação considera particularidades arquitetônicas, diferenciais de acabamento e a liquidez atual do segmento de luxo.",
-    whatsappCtaText: "Olá Nathalia, quero agendar uma avaliação profissional e discreta para meu imóvel.",
-    viewsCount: 89,
-    leadsCount: 12,
-    createdAt: "2026-10-18T10:00:00Z",
-    updatedAt: "2026-10-21T15:00:00Z",
-    seoTitle: "Avaliação Imobiliária de Alto Padrão | Nathalia Robadey",
-    seoDescription: "Avaliação mercadológica criteriosa para imóveis de luxo na Região Serrana e Rio de Janeiro.",
-    sections: [
-      {
-        id: "sec-4",
-        type: "hero",
-        title: "Avaliação Precisa e Confidencial",
-        subtitle: "Proteja o valor do seu patrimônio com uma consultoria que entende o comprador de luxo."
-      },
-      {
-        id: "sec-5",
-        type: "features",
-        title: "Por que anunciar com Nathalia Robadey?",
-        items: [
-          "Produção audiovisual profissional e fotografia arquitetônica",
-          "Base qualificada de clientes investidores e compradores ativos",
-          "Total sigilo na divulgação e qualificação prévia de interessados",
-          "Assessoria jurídica completa até a assinatura da escritura"
+          "Lotes com excelente topografia",
+          "Área de lazer completa",
+          "Segurança 24 horas"
         ]
       }
     ]
@@ -432,23 +305,12 @@ export const INITIAL_SOCIAL_POSTS: SocialPost[] = [
   {
     id: "post-1",
     platform: "instagram",
-    title: "Residência Contemporânea Mury",
-    caption: "A sensação de acordar diante do vale das montanhas com o conforto de uma arquitetura que abraça a luz natural. Esta residência em Mury traduz o melhor da vida na serra: requinte, privacidade e integração total com a paisagem.\n\n✨ 4 suítes | Piscina aquecida com borda infinita | Adega climatizada\n\nAgende sua visita exclusiva através do link na bio ou direct.\n\n#NathaliaRobadeyImoveis #ImoveisDeLuxo #RegiaoSerrana #NovaFriburgo #ArquiteturaContemporanea #AltoPadrao",
-    hashtags: ["#NathaliaRobadeyImoveis", "#ImoveisDeLuxo", "#RegiaoSerrana", "#NovaFriburgo", "#ArquiteturaContemporanea", "#Mury"],
+    title: "Residência Mury",
+    caption: "A sensação de acordar diante do vale das montanhas com todo o conforto.\n\n✨ 3 quartos | Piscina | Vista panorâmica\n\nAgende sua visita através do link na bio ou direct.\n\n#NathaliaRobadeyImoveis #RegiaoSerrana #NovaFriburgo #ImoveisResidenciais",
+    hashtags: ["#NathaliaRobadeyImoveis", "#RegiaoSerrana", "#NovaFriburgo", "#ImoveisResidenciais"],
     mediaUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
     status: "published",
     suggestedByAi: false,
     createdAt: "2026-10-20T12:00:00Z"
-  },
-  {
-    id: "post-2",
-    platform: "instagram",
-    title: "Dica de Investimento: Lançamentos na Serra",
-    caption: "Investir em imóveis na Região Serrana transcende o lazer: é diversificação patrimonial com expressiva valorização histórica. Empreendimentos com infraestrutura sustentável e foco em bem-estar lideram o ranking de liquidez no segmento premium.\n\nQuer conhecer os novos projetos antes do lançamento público? Fale conosco.\n\n#InvestimentoImobiliario #MercadoImobiliarioDeLuxo #NovaFriburgo #ImoveisPremium",
-    hashtags: ["#InvestimentoImobiliario", "#MercadoImobiliarioDeLuxo", "#NovaFriburgo", "#ImoveisPremium"],
-    status: "scheduled",
-    scheduledFor: "2026-10-25T17:00:00Z",
-    suggestedByAi: true,
-    createdAt: "2026-10-22T09:00:00Z"
   }
 ];

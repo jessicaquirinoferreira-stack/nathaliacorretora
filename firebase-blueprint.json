@@ -1,0 +1,109 @@
+{
+  "entities": {
+    "Property": {
+      "title": "Property",
+      "description": "High-end real estate listing for Nathalia Robadey Imóveis",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "title": { "type": "string", "description": "Listing title" },
+        "type": { "type": "string", "description": "Apartment, House, Penthouse, Land, Commercial" },
+        "purpose": { "type": "string", "description": "Venda or Locação" },
+        "price": { "type": "number", "description": "Asking price in BRL" },
+        "condoFee": { "type": "number", "description": "Monthly condominium fee" },
+        "iptu": { "type": "number", "description": "Annual or monthly IPTU tax" },
+        "area": { "type": "number", "description": "Total or private area in m²" },
+        "bedrooms": { "type": "number", "description": "Number of bedrooms" },
+        "suites": { "type": "number", "description": "Number of suites" },
+        "bathrooms": { "type": "number", "description": "Number of bathrooms" },
+        "parkingSpots": { "type": "number", "description": "Number of parking spaces" },
+        "address": { "type": "string", "description": "Street or landmark address" },
+        "neighborhood": { "type": "string", "description": "Neighborhood or district" },
+        "city": { "type": "string", "description": "City" },
+        "state": { "type": "string", "description": "UF code" },
+        "description": { "type": "string", "description": "Detailed description" },
+        "features": { "type": "array", "description": "Amenities and features list" },
+        "images": { "type": "array", "description": "Array of watermarked image URLs" },
+        "coverImage": { "type": "string", "description": "Main cover image URL" },
+        "status": { "type": "string", "description": "active, reserved, or sold" },
+        "isFeatured": { "type": "boolean", "description": "Whether highlighted on homepage" },
+        "createdAt": { "type": "string", "description": "ISO timestamp or server timestamp" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp or server timestamp" }
+      },
+      "required": ["title", "type", "purpose", "price", "neighborhood", "city"]
+    },
+    "Development": {
+      "title": "Development",
+      "description": "Luxury development launch or pre-construction enterprise",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique development ID" },
+        "name": { "type": "string", "description": "Development name" },
+        "neighborhood": { "type": "string", "description": "Neighborhood" },
+        "city": { "type": "string", "description": "City" },
+        "tagline": { "type": "string", "description": "Short promotional hook" },
+        "status": { "type": "string", "description": "Breve Lançamento, Em Obras, Pronto para Morar" },
+        "minPrice": { "type": "number", "description": "Starting price in BRL" },
+        "deliveryDate": { "type": "string", "description": "Expected delivery date" },
+        "description": { "type": "string", "description": "Development details" },
+        "features": { "type": "array", "description": "Condo amenities" },
+        "images": { "type": "array", "description": "Renders and photos" },
+        "coverImage": { "type": "string", "description": "Main banner render" }
+      },
+      "required": ["name", "neighborhood", "city"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Client contact lead, consultation inquiry, or scheduling request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique lead ID" },
+        "name": { "type": "string", "description": "Lead full name" },
+        "email": { "type": "string", "description": "Lead email" },
+        "phone": { "type": "string", "description": "Lead WhatsApp phone" },
+        "message": { "type": "string", "description": "Client message or question" },
+        "propertyId": { "type": "string", "description": "Target property ID if applicable" },
+        "propertyTitle": { "type": "string", "description": "Target property title if applicable" },
+        "type": { "type": "string", "description": "contact, property_inquiry, or valuation" },
+        "status": { "type": "string", "description": "new, in_contact, converted, archived" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["name", "phone"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Broker profile and institutional settings",
+      "type": "object",
+      "properties": {
+        "brokerName": { "type": "string", "description": "Broker name" },
+        "creci": { "type": "string", "description": "CRECI registration number" },
+        "phone": { "type": "string", "description": "Contact phone" },
+        "whatsapp": { "type": "string", "description": "WhatsApp number" },
+        "email": { "type": "string", "description": "Email address" },
+        "instagram": { "type": "string", "description": "Instagram handle" },
+        "address": { "type": "string", "description": "Office address" },
+        "bio": { "type": "string", "description": "Broker professional bio" },
+        "watermarkText": { "type": "string", "description": "Default watermark label" },
+        "watermarkEnabled": { "type": "boolean", "description": "Whether watermark is auto applied" }
+      }
+    }
+  },
+  "firestore": {
+    "/properties/{propertyId}": {
+      "schema": { "$ref": "Property" },
+      "description": "Publicly readable collection of luxury property listings, managed by broker admin"
+    },
+    "/developments/{developmentId}": {
+      "schema": { "$ref": "Development" },
+      "description": "Luxury launches and developments collection"
+    },
+    "/leads/{leadId}": {
+      "schema": { "$ref": "Lead" },
+      "description": "Inbound client contact leads created from public web forms and managed by broker admin"
+    },
+    "/siteSettings/{settingsId}": {
+      "schema": { "$ref": "SiteSettings" },
+      "description": "Site global institutional information and configurations"
+    }
+  }
+}

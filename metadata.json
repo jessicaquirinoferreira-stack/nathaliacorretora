@@ -1,0 +1,6 @@
+{
+  "name": "Nathalia Robadey Imóveis",
+  "description": "Imobiliária premium de alto padrão, lançamentos exclusivos e curadoria imobiliária de luxo por Nathalia Robadey.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

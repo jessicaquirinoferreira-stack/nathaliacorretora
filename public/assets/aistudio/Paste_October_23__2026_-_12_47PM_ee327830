@@ -1,0 +1,708 @@
+# PROJETO EXTREMO — NATHALIA ROBADEY IMÓVEIS
+## Site imobiliário premium, inteligente, automatizado e totalmente administrável
+
+Atue como uma equipe multidisciplinar formada pelos melhores profissionais de arquitetura de software, engenharia full-stack, UX/UI premium, motion design, SEO imobiliário, Firebase, segurança da informação, automação comercial, marketing digital e inteligência artificial.
+
+Sua missão é CONSTRUIR E IMPLEMENTAR um site imobiliário completo, funcional, elegante e preparado para produção. Não entregue apenas um layout, uma demonstração visual, um protótipo ou uma lista de sugestões. Implemente as funcionalidades reais, conecte o frontend ao backend e teste os fluxos essenciais.
+
+O resultado deve parecer desenvolvido por um estúdio internacional especializado em marcas imobiliárias de luxo, e não por um gerador automático de sites.
+
+# 1. IDENTIDADE OFICIAL
+
+Nome comercial: Nathalia Robadey Imóveis
+
+Nome técnico do projeto: nathaliarobadeyimoveis
+
+WhatsApp comercial: +55 22 99931-5940
+
+Telefone de contato: +55 22 99931-5940
+
+E-mail: nathaliardmp@gmail.com
+
+Instagram: @nathaliarobadey
+
+Instagram oficial:
+https://www.instagram.com/nathaliarobadey/
+
+Logotipo oficial:
+https://i.postimg.cc/zfsH2LJH/Logo-imobiliario-NR-dourado-e-azul-marinho.png
+
+A identidade visual deve partir diretamente do logotipo original, respeitando seu azul-marinho, dourado, transparência e proporções. Não redesenhar, distorcer, recortar nem colocar uma caixa branca atrás da logo.
+
+Baixar ou carregar o arquivo original de maneira confiável, preservar sua transparência e disponibilizá-lo como um ativo local otimizado do projeto. Criar fallback caso o endereço externo esteja indisponível.
+
+# 2. DIREÇÃO DE ARTE: EXCELÊNCIA VISUAL
+
+Criar um site imobiliário premium em tema claro, com identidade editorial, sofisticação arquitetônica e foco em conversão.
+
+Paleta:
+- Azul-marinho profundo como cor institucional.
+- Dourado elegante, sem exagero de brilho.
+- Branco quente e off-white como fundos predominantes.
+- Cinza mineral para textos secundários.
+- Tons discretos de areia e pedra em detalhes.
+- Contraste acessível e tipografia de excelente legibilidade.
+
+Não usar excesso de gradientes, cartões repetitivos, bordas arredondadas em todos os elementos, emojis decorativos, sombras pesadas, fundos neon ou aparência de dashboard genérico no site público.
+
+Utilizar tipografia editorial premium, títulos expressivos, hierarquia visual consistente, espaçamento generoso, composição assimétrica, fotografias arquitetônicas de alta qualidade e detalhes gráficos inspirados em revistas internacionais de arquitetura.
+
+O site deverá ser responsivo de verdade, com experiência específica para desktop, tablet e celular.
+
+# 3. EFEITOS E EXPERIÊNCIA VISUAL AVANÇADA
+
+Explore recursos modernos de CSS, JavaScript, SVG, WebGL ou bibliotecas compatíveis quando trouxerem valor real.
+
+Implementar, com moderação e excelente desempenho:
+
+- Hero cinematográfico com fotografia imobiliária impactante.
+- Transições suaves entre seções.
+- Parallax com profundidade e velocidade controladas.
+- Animações de entrada acionadas pelo scroll.
+- Máscaras animadas em imagens.
+- Revelação progressiva de fotografias.
+- Microinterações nos botões e links.
+- Menus com transições elegantes.
+- Galerias com zoom, navegação por teclado e tela cheia.
+- Animações numéricas discretas para indicadores reais.
+- Elementos tipográficos animados.
+- Navegação com indicador de seção ativa.
+- Transições entre imagens de imóveis.
+- Efeitos de profundidade em projetos selecionados.
+- Skeletons elegantes durante carregamentos.
+- Feedback visual para formulários.
+- Transições de páginas, quando compatíveis com a arquitetura.
+- Efeitos de movimento baseados na posição do cursor apenas em dispositivos apropriados.
+
+Toda animação deve respeitar prefers-reduced-motion, manter a acessibilidade e evitar prejudicar o desempenho, a leitura ou a navegação.
+
+Não criar efeitos que atrasem o acesso ao conteúdo. Priorizar carregamento rápido, Core Web Vitals e experiência mobile.
+
+# 4. ESTRUTURA DO SITE PÚBLICO
+
+Criar as seguintes páginas e seções.
+
+## 4.1 Página inicial
+
+- Cabeçalho premium com logotipo original.
+- Menu institucional.
+- Botão de contato por WhatsApp.
+- Hero visual com fotografia de arquitetura ou imóvel.
+- Título institucional original, persuasivo e elegante.
+- Busca imobiliária funcional.
+- Filtros por finalidade, cidade, bairro, tipo de imóvel, faixa de preço e dormitórios.
+- Seleção de empreendimentos em destaque.
+- Imóveis recomendados.
+- Lançamentos.
+- Oportunidades selecionadas.
+- Seção institucional da profissional.
+- Diferenciais do atendimento.
+- Processo de compra, venda e investimento.
+- Formulário de atendimento.
+- Depoimentos somente quando houver conteúdo real autorizado.
+- Integração com Instagram por link oficial e, se autorizada, API oficial.
+- CTA de contato estratégico.
+- Rodapé completo com contatos e redes sociais.
+
+Não inventar imóveis, valores, depoimentos, certificações, prêmios, números de vendas ou informações profissionais. Quando faltarem dados, criar campos administráveis e estados vazios elegantes.
+
+## 4.2 Página de listagem de imóveis
+
+Criar listagem conectada ao Firebase com filtros combináveis, ordenação, paginação ou carregamento incremental, busca textual e URLs compartilháveis.
+
+Cada imóvel deve ter:
+- ID único.
+- Título.
+- Slug amigável.
+- Código de referência.
+- Descrição completa.
+- Tipo e finalidade.
+- Cidade e bairro.
+- Endereço ou localização com visibilidade configurável.
+- Preço e condições.
+- Área útil e total, quando aplicável.
+- Quartos, suítes, banheiros e vagas.
+- Características e diferenciais.
+- Condomínio e IPTU, quando informados.
+- Galeria de fotografias.
+- Foto de capa.
+- Planta ou documentos públicos opcionais.
+- Status: rascunho, publicado, reservado ou vendido.
+- Destaque na página inicial.
+- Data de publicação e atualização.
+- Metadados de SEO.
+- Botão para compartilhar.
+- CTA contextual para WhatsApp.
+
+Não exibir imóveis inativos nos resultados públicos.
+
+## 4.3 Página individual de imóvel
+
+Criar páginas individuais com URLs amigáveis, galeria profissional, descrição, características, mapa opcional, imóveis semelhantes, formulário de interesse e contato via WhatsApp.
+
+O link de WhatsApp deverá incluir uma mensagem contextual com referência e título do imóvel, usando codificação correta da URL.
+
+## 4.4 Páginas institucionais
+
+Criar:
+- Sobre Nathalia Robadey.
+- Comprar imóvel.
+- Vender imóvel.
+- Investir em imóveis.
+- Empreendimentos.
+- Contato.
+- Política de privacidade.
+- Política de cookies.
+- Termos de uso.
+
+O conteúdo deverá ser editável pelo administrador, sem exigir alteração manual no código.
+
+# 5. CAPTAÇÃO INTELIGENTE DE LEADS
+
+Todos os pontos de contato deverão funcionar de verdade.
+
+Implementar:
+- Formulário de interesse por imóvel.
+- Formulário de avaliação para venda.
+- Formulário de busca personalizada.
+- Formulário de contato geral.
+- Solicitação de visita.
+- Solicitação de atendimento por WhatsApp.
+- Registro de origem do lead.
+- Página e imóvel de origem.
+- Campanha e parâmetros UTM, quando disponíveis.
+- Data e hora.
+- Histórico de interações permitidas.
+- Consentimento e preferências de comunicação.
+- Status do atendimento.
+- Responsável pelo lead.
+- Observações internas.
+- Etiquetas e classificação comercial.
+- Proteção contra spam, abuso e envios duplicados.
+
+Os dados deverão ser gravados no Firebase por meio de endpoints seguros, com validação no servidor, limites de frequência e regras apropriadas.
+
+Não permitir que usuários públicos consultem a lista completa de leads.
+
+Criar opção de exportação CSV restrita ao administrador autorizado.
+
+# 6. ASSISTENTE VIRTUAL COM AVATAR HUMANO
+
+Adicionar uma assistente virtual com aparência humana profissional, usando uma fotografia ou avatar gerado com autorização de uso e qualidade adequada.
+
+Posicionamento: botão flutuante na lateral direita, sem cobrir botões, conteúdo ou campos importantes.
+
+Requisitos:
+- Tamanho discreto.
+- Animação sutil.
+- Janela de conversa elegante.
+- Mensagem inicial acolhedora.
+- Atalhos para comprar, vender, conhecer lançamentos e falar com Nathalia.
+- Perguntas frequentes.
+- Coleta consentida de nome e contato.
+- Encaminhamento contextual para o WhatsApp.
+- Capacidade de consultar somente os imóveis publicados e os dados autorizados.
+- Mensagens de erro e fallback.
+- Possibilidade de fechar e reabrir.
+- Adaptação ao teclado e leitores de tela.
+- Não bloquear a navegação no celular.
+
+Se houver integração com Gemini, implementá-la exclusivamente pelo backend, usando variável de ambiente e limites de utilização.
+
+A assistente deve identificar-se como virtual, não inventar disponibilidade, preço ou características de imóveis e não fingir ser uma pessoa real.
+
+# 7. WHATSAPP: CENTRAL DE CONVERSÃO
+
+Utilizar o número oficial +55 22 99931-5940.
+
+Criar:
+- Botão fixo de WhatsApp no cabeçalho.
+- Botões em cada imóvel.
+- CTA após filtros.
+- CTA após formulários.
+- Botão no rodapé.
+- Botão na assistente virtual.
+- CTA em páginas de empreendimentos.
+- CTA em landing pages.
+- Mensagens pré-preenchidas conforme o contexto.
+- Rastreamento de cliques com eventos de analytics.
+- Links com texto corretamente codificado.
+- Registro da origem do clique quando permitido.
+
+Usar links wa.me com o número internacional sem símbolos.
+
+Não abrir janelas repetidamente, não iniciar conversas automaticamente e não enviar mensagens em massa sem autorização e consentimento.
+
+Criar no painel uma área para editar mensagens, textos de CTA e destinos comerciais.
+
+# 8. PAINEL ADMINISTRATIVO
+
+O painel deverá ser acessível pelo link discreto “Área administrativa”, centralizado no rodapé.
+
+Criar rota própria /admin, sem exibir o painel administrativo aos visitantes comuns.
+
+## Autenticação inicial
+
+E-mail administrativo inicial: admin@x.com
+
+Senha inicial solicitada: admin4321
+
+Tratar essas credenciais exclusivamente como configuração inicial. Criar a conta administrativa real no Firebase Authentication e exigir troca da senha no primeiro acesso.
+
+Não inserir a senha em arquivos JavaScript públicos, HTML, repositórios GitHub, logs, dados do frontend ou variáveis VITE expostas ao navegador.
+
+A conta deverá ser criada por um processo seguro de provisionamento autorizado. Se faltarem permissões ou configurações, informar claramente o procedimento pendente, sem simular sucesso.
+
+Implementar:
+- Login.
+- Logout.
+- Recuperação de senha.
+- Sessões seguras.
+- Proteção de rotas.
+- Verificação de permissões no servidor.
+- Autorização administrativa por UID ou custom claims.
+- Proteção contra escalonamento de privilégios.
+- Mensagens de erro adequadas.
+- Expiração e renovação de sessão quando aplicável.
+
+O e-mail, isoladamente, não pode conceder privilégios de administrador.
+
+# 9. DASHBOARD ADMINISTRATIVO COMPLETO
+
+Criar um painel visualmente premium, organizado e funcional.
+
+Indicadores:
+- Total de leads.
+- Leads novos.
+- Leads em atendimento.
+- Leads convertidos.
+- Taxa de conversão, com fórmula documentada.
+- Imóveis publicados.
+- Imóveis em rascunho.
+- Empreendimentos ativos.
+- Visitas solicitadas.
+- Cliques no WhatsApp.
+- Desempenho por origem.
+- Desempenho das landing pages.
+- Evolução dos leads ao longo do tempo.
+
+Utilizar gráficos conectados a dados reais.
+
+Quando ainda não houver dados, apresentar zero, estados vazios e instruções. Não gerar estatísticas falsas.
+
+Menu administrativo:
+1. Visão geral.
+2. Leads.
+3. Imóveis.
+4. Empreendimentos.
+5. Galeria de fotos.
+6. Landing pages.
+7. Assistente virtual.
+8. WhatsApp.
+9. Redes sociais.
+10. Conteúdo e páginas.
+11. SEO.
+12. Integrações.
+13. Usuários e permissões.
+14. Configurações.
+15. Logs de auditoria.
+
+# 10. CADASTRO COMPLETO DE EMPREENDIMENTOS
+
+Implementar CRUD completo: criar, visualizar, editar, publicar, despublicar, arquivar e remover.
+
+Campos:
+- Nome do empreendimento.
+- Descrição.
+- Incorporadora.
+- Localização.
+- Tipo de empreendimento.
+- Status comercial.
+- Preço inicial, se informado.
+- Previsão de entrega, se informada.
+- Plantas e metragens.
+- Número de unidades, se informado.
+- Diferenciais.
+- Galeria.
+- Imagem de capa.
+- Plantas em PDF.
+- Documentos permitidos.
+- SEO.
+- Slug.
+- CTA personalizado.
+- Destaque na página inicial.
+- Ordem de exibição.
+
+Antes de excluir, exigir confirmação. Preferir arquivamento e exclusão lógica quando houver leads ou histórico associado.
+
+Todas as operações devem persistir no Firebase e refletir-se no site público após confirmação do servidor.
+
+# 11. CRIADOR PROFISSIONAL DE LANDING PAGES
+
+Criar uma área administrativa que permita construir landing pages imobiliárias sem programar.
+
+Fluxo:
+1. Criar landing page.
+2. Escolher um modelo visual premium.
+3. Definir objetivo: lançamento, imóvel específico, captação de compradores ou captação de vendedores.
+4. Inserir título, textos, imagens, localização, características e CTA.
+5. Configurar formulários.
+6. Configurar SEO e compartilhamento social.
+7. Visualizar em desktop e celular.
+8. Salvar como rascunho.
+9. Publicar.
+10. Copiar link público.
+
+O editor deverá permitir:
+- Personalização de seções.
+- Reordenação de blocos.
+- Cores e tipografia dentro da identidade visual.
+- Upload de imagens.
+- Galeria.
+- Vídeos por links permitidos.
+- Formulários.
+- CTA de WhatsApp.
+- Prova social somente com dados autorizados.
+- Metadados.
+- Slug personalizado.
+- Status de publicação.
+- Duplicação de páginas.
+- Despublicação.
+- Pré-visualização.
+- Registro de leads por página.
+- Estatísticas de visitas e conversões.
+
+As páginas publicadas devem possuir URLs reais, por exemplo:
+https://SEU-DOMINIO/landing/nome-da-campanha
+
+Não apresentar URLs fictícias como se já estivessem publicadas. Configurar rotas, fallback da hospedagem e domínio para que o acesso direto e o compartilhamento funcionem.
+
+# 12. CONTROLE DE REDES SOCIAIS
+
+Criar uma central para gerenciar a presença digital da imobiliária.
+
+Incluir:
+- Link e identificação do Instagram.
+- Botões sociais.
+- Calendário editorial.
+- Planejamento de publicações.
+- Biblioteca de imagens.
+- Legendas.
+- Hashtags.
+- Rascunhos.
+- Campanhas.
+- Links rastreáveis.
+- Histórico de publicações.
+- Métricas disponíveis.
+- Sugestões de conteúdo com IA.
+- Modelos de anúncios imobiliários.
+- Textos para Reels, Stories e feed.
+- Links para publicação manual.
+- Área de conexão com APIs oficiais quando disponíveis.
+
+Publicação automática somente quando a plataforma, as permissões, a conta e as APIs oficiais permitirem. Solicitar autorização explícita, usar tokens seguros no backend e informar claramente o que está conectado.
+
+Não simular conexão com Instagram, Meta ou WhatsApp. Não prometer publicação automática em plataformas que não tenham sido efetivamente conectadas.
+
+# 13. FIREBASE: PROJETO NOVO E ISOLADO
+
+A infraestrutura deste site deve ser independente de todos os projetos anteriores.
+
+Identificador sugerido, sujeito à disponibilidade:
+nathalia-robadey-imoveis-prod
+
+Antes de qualquer operação:
+- Identificar o projeto Firebase de destino.
+- Confirmar que é um projeto novo ou exclusivo.
+- Não modificar projetos existentes.
+- Não reutilizar arquivos .env de outros projetos.
+- Não sobrescrever configurações de aplicações anteriores.
+- Não apagar bancos de dados ou recursos preexistentes.
+- Não reutilizar credenciais de outros sites.
+
+Criar uma configuração guiada de provisionamento para:
+- Projeto Firebase.
+- Firebase Authentication.
+- Cloud Firestore.
+- Regras de segurança.
+- Índices necessários.
+- Firebase Storage somente se realmente necessário.
+- App web Firebase.
+- Variáveis de ambiente.
+- Configuração de domínios autorizados.
+- Configuração de backend.
+- Logs e validações.
+
+Usar um identificador exclusivo de aplicação e registrar os recursos criados.
+
+Importante: o código do site não deve presumir que possui permissão para criar projetos no Google Cloud. A criação do projeto e a ativação de serviços podem exigir autorização do proprietário e configuração de cobrança ou APIs. Se a criação totalmente automática não for suportada pelo ambiente, gerar um assistente de provisionamento com etapas precisas e verificáveis.
+
+Não conectar o projeto a um Firebase antigo como fallback silencioso.
+
+## Estrutura sugerida do Firestore
+
+Criar coleções apropriadas para:
+- properties
+- developments
+- leads
+- landingPages
+- siteSettings
+- contentPages
+- socialCampaigns
+- analyticsEvents
+- users
+- auditLogs
+- assistantSettings
+
+Ajustar nomes e estrutura de acordo com o modelo de dados final.
+
+Criar regras mínimas de privilégio. Visitantes podem ler apenas conteúdo público publicado e enviar leads por endpoints validados. Operações administrativas exigem autenticação e autorização real.
+
+Não permitir que o frontend conceda a si mesmo permissões administrativas.
+
+Criar índices para consultas frequentes, paginação e filtros.
+
+Preparar regras, índices, migrações e comandos de deploy versionados.
+
+# 14. VERCEL BLOB: TODAS AS FOTOS
+
+Integrar Vercel Blob para armazenar as imagens de imóveis, empreendimentos, landing pages e demais mídias administráveis.
+
+O upload deverá funcionar a partir de:
+- Computador Windows.
+- Celular Android.
+- Tablet.
+- Seletor de arquivos do navegador.
+- Seleção múltipla de imagens.
+- Arrastar e soltar em dispositivos compatíveis.
+
+Implementar:
+- Upload de uma ou várias fotos.
+- Barra de progresso.
+- Pré-visualização.
+- Ordenação.
+- Seleção de capa.
+- Exclusão.
+- Substituição.
+- Reordenação por arrastar.
+- Feedback de sucesso e falha.
+- Tratamento de interrupções.
+- Validação de extensão, MIME type e tamanho.
+- Limites de upload configuráveis.
+- Redimensionamento e otimização de imagens.
+- Geração de thumbnails quando apropriado.
+- URLs persistentes.
+- Armazenamento dos metadados no Firestore.
+- Exclusão controlada de arquivos órfãos.
+- Tratamento de imagens removidas.
+- Carregamento lazy nas páginas públicas.
+
+Utilizar a integração oficial e compatível com a versão atual do Vercel Blob, implementando upload por endpoints seguros ou fluxo de upload direto autenticado quando apropriado.
+
+O token do Blob deve ficar exclusivamente no ambiente servidor, nunca no código do navegador.
+
+Configurar a variável BLOB_READ_WRITE_TOKEN na Vercel. Se não estiver configurada, mostrar instruções para corrigir a integração, sem afirmar que os uploads estão funcionando.
+
+Cada registro deve guardar URL, pathname ou identificador do objeto, tipo, tamanho, dimensões e referência do imóvel ou página relacionada.
+
+Não guardar imagens apenas em memória local do navegador ou em caminhos temporários que desapareçam após um novo deploy.
+
+As imagens publicadas devem continuar acessíveis após atualização do site. A remoção de um imóvel não deve apagar fotos compartilhadas por outros registros.
+
+# 15. CONFIGURAÇÕES GERAIS DO SITE
+
+Criar um módulo administrativo para editar:
+- Logo.
+- Nome comercial.
+- Telefone.
+- WhatsApp.
+- E-mail.
+- Instagram.
+- Textos institucionais.
+- SEO padrão.
+- Redes sociais.
+- Mensagens automáticas.
+- CTAs.
+- Imagens da página inicial.
+- Banners.
+- Cores dentro da identidade institucional.
+- Aviso de cookies.
+- Políticas.
+- Integrações.
+- Preferências da assistente.
+- Configurações de analytics.
+- Dados de contato exibidos no rodapé.
+
+Alterações devem ser persistidas no Firebase, validadas e refletidas no site público sem exigir novo build quando tecnicamente possível.
+
+# 16. SEO IMOBILIÁRIO AVANÇADO
+
+Implementar:
+- Títulos e descrições individuais.
+- URLs amigáveis.
+- Canonical URLs.
+- Open Graph.
+- Metadados para compartilhamento.
+- Sitemap XML dinâmico.
+- Robots.txt.
+- Redirecionamentos adequados.
+- Páginas de erro.
+- Imagens otimizadas.
+- Dados estruturados compatíveis com o conteúdo real.
+- Breadcrumbs.
+- Estratégia de links internos.
+- Conteúdo sem duplicação desnecessária.
+- Configuração de Google Search Console.
+- Integração opcional com Google Analytics e ferramentas de medição autorizadas.
+
+Priorizar renderização indexável das páginas públicas. Utilizar SSR, prerenderização ou geração estática quando adequado à stack escolhida.
+
+Não criar avaliações falsas, marcações enganosas, páginas de localização inventadas ou promessas de primeira posição no Google.
+
+# 17. DESEMPENHO E ACESSIBILIDADE
+
+Metas:
+- Carregamento rápido.
+- Imagens responsivas.
+- Lazy loading abaixo da dobra.
+- Fontes otimizadas.
+- JavaScript dividido por rota.
+- Componentes reutilizáveis.
+- Evitar dependências desnecessárias.
+- Layout estável durante o carregamento.
+- Navegação por teclado.
+- Contraste adequado.
+- Labels e mensagens acessíveis.
+- Sem erros de console.
+- Sem links quebrados.
+- Sem botões decorativos que não funcionam.
+
+Respeitar prefers-reduced-motion e as limitações de aparelhos móveis.
+
+# 18. ARQUITETURA E ORGANIZAÇÃO DO CÓDIGO
+
+Utilizar a stack compatível com o ambiente atual do Google AI Studio. Se o projeto for React e TypeScript, manter TypeScript estrito, componentes reutilizáveis e organização modular.
+
+Separar:
+- Site público.
+- Painel administrativo.
+- Camada de autenticação.
+- Serviços Firebase.
+- Endpoints backend.
+- Upload Blob.
+- Sistema de leads.
+- Editor de landing pages.
+- Assistente virtual.
+- SEO.
+- Analytics.
+- Configurações.
+
+Não reescrever desnecessariamente arquivos já funcionais do projeto. Primeiro inspecionar a estrutura existente e identificar dependências.
+
+Criar documentação para:
+- Configuração local.
+- Variáveis de ambiente.
+- Provisionamento Firebase.
+- Configuração Blob.
+- Deploy.
+- Migrações.
+- Recuperação de erros.
+- Procedimento para criar o primeiro administrador.
+
+Fornecer .env.example sem credenciais reais.
+
+# 19. SEGURANÇA E PRIVACIDADE
+
+Implementar:
+- Validação no servidor.
+- Autorização por função.
+- Proteção contra XSS.
+- Sanitização de conteúdo.
+- Limites de requisições.
+- Proteção contra abuso de formulários.
+- Segredos exclusivamente no servidor.
+- Logs sem senhas ou tokens.
+- Auditoria de alterações administrativas.
+- Proteção dos dados pessoais.
+- Consentimento quando necessário.
+- Retenção e exclusão de dados conforme política definida.
+- Procedimentos de recuperação administrativa.
+
+Nunca expor credenciais de serviço Firebase, tokens de Blob, chaves privadas ou chaves de API de IA no frontend ou no GitHub.
+
+Não implementar endpoints administrativos sem autenticação.
+
+# 20. TESTES OBRIGATÓRIOS
+
+Executar e corrigir:
+1. Build de produção.
+2. Login administrativo.
+3. Logout e proteção de rotas.
+4. Criação, edição e publicação de imóvel.
+5. Criação e remoção de empreendimento.
+6. Upload de múltiplas fotos.
+7. Persistência das URLs de imagens.
+8. Exibição das fotos após recarregar a página.
+9. Envio e registro de leads.
+10. Proteção de dados dos leads.
+11. Filtros e busca.
+12. WhatsApp com mensagem contextual.
+13. Criação e publicação de landing page.
+14. Acesso direto à URL publicada.
+15. Responsividade.
+16. Navegação por teclado.
+17. Tratamento de falhas de rede.
+18. Regras e permissões do Firebase.
+19. Ausência de segredos no bundle público.
+20. Verificação dos principais erros do console.
+
+Criar testes automatizados para os fluxos críticos e instruções para testar manualmente os serviços externos.
+
+# 21. CRITÉRIO DE ENTREGA
+
+O projeto somente pode ser considerado concluído quando:
+- O site público estiver implementado.
+- O visual premium estiver consistente.
+- A navegação funcionar.
+- Os formulários estiverem conectados.
+- O painel estiver protegido.
+- O Firebase estiver configurado e validado.
+- O Vercel Blob estiver configurado e validado.
+- O upload e a persistência de imagens funcionarem.
+- Os imóveis e empreendimentos forem administráveis.
+- A criação de landing pages gerar links reais.
+- Os botões de contato funcionarem.
+- O build de produção passar.
+- As configurações pendentes estiverem claramente identificadas.
+
+Não declarar concluída nenhuma integração que dependa de credenciais, permissões, APIs ou serviços ainda não configurados.
+
+# 22. ORDEM DE EXECUÇÃO
+
+Trabalhe nesta ordem:
+
+FASE 1 — Inspecionar o ambiente e a estrutura existente, sem alterar outros projetos.
+
+FASE 2 — Planejar a arquitetura, os modelos de dados e as integrações.
+
+FASE 3 — Implementar o design premium e as páginas públicas.
+
+FASE 4 — Implementar Firebase isolado, autenticação e regras.
+
+FASE 5 — Implementar uploads persistentes no Vercel Blob.
+
+FASE 6 — Implementar painel administrativo, leads, imóveis e empreendimentos.
+
+FASE 7 — Implementar criador de landing pages.
+
+FASE 8 — Implementar assistente virtual, WhatsApp e gestão de redes sociais.
+
+FASE 9 — Implementar SEO, acessibilidade e otimização.
+
+FASE 10 — Executar testes, corrigir erros e preparar publicação.
+
+Comece inspecionando o ambiente disponível. Depois implemente o projeto por etapas, preservando todas as funcionalidades já concluídas. Não substitua a implementação real por explicações, telas falsas ou dados simulados apresentados como verdadeiros.
+
+Em cada fase, informe o que foi implementado, o que foi testado e quais credenciais ou autorizações externas ainda precisam ser configuradas.
+
+O objetivo final é entregar uma imobiliária digital premium, funcional, segura, administrável e preparada para captar clientes reais.

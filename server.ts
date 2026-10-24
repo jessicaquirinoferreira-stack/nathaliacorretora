@@ -19,10 +19,17 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
-// Ensure public upload directories exist
-const UPLOADS_DIR = path.resolve(process.cwd(), 'public', 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Ensure public upload directories exist (safely handle read-only filesystems in serverless)
+const isVercel = Boolean(process.env.VERCEL);
+const UPLOADS_DIR = isVercel
+  ? path.resolve('/tmp', 'uploads')
+  : path.resolve(process.cwd(), 'public', 'uploads');
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (e) {
+  console.warn('[Server] Aviso ao inicializar pasta de uploads:', e);
 }
 
 // Multer storage for local fallback

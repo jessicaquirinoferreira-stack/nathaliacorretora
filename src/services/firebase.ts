@@ -1,5 +1,11 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  signInWithEmailAndPassword, 
+  signOut 
+} from 'firebase/auth';
 import { 
   getFirestore, 
   doc, 
@@ -240,7 +246,22 @@ export const firestoreService = {
     }
   },
 
+  // Auth helper with Email and Password (Firebase Authentication)
+  async loginWithEmailPassword(email: string, password: string) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      return userCredential.user;
+    } catch (err) {
+      console.warn('[Firebase Auth] signInWithEmailAndPassword note:', err);
+      throw err;
+    }
+  },
+
   async logout() {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.warn('[Firebase Auth] signOut error:', err);
+    }
   }
 };

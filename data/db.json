@@ -541,6 +541,20 @@
   ],
   "auditLogs": [
     {
+      "id": "log-1792846550539",
+      "timestamp": "2026-10-24T12:55:50.539Z",
+      "action": "LOGIN_ADMIN_SUCESSO",
+      "user": "admin@x.com",
+      "details": "Login administrativo efetuado com sucesso (admin@x.com)."
+    },
+    {
+      "id": "log-1792845868487",
+      "timestamp": "2026-10-24T12:44:28.487Z",
+      "action": "LOGIN_ADMIN_SUCESSO",
+      "user": "admin@x.com",
+      "details": "Login administrativo efetuado com sucesso (admin@x.com)."
+    },
+    {
       "id": "log-1792843883022",
       "timestamp": "2026-10-24T12:11:23.022Z",
       "action": "LOGIN_ADMIN_SUCESSO",
@@ -573,6 +587,6 @@
     "email": "admin@x.com",
     "passwordHash": "927b25cca14a91a727485f40e8820e1ae11476bf25b256c7cd5b864257b08393",
     "mustChangePassword": false,
-    "lastLogin": "2026-10-24T12:11:23.021Z"
+    "lastLogin": "2026-10-24T12:55:50.539Z"
   }
 }

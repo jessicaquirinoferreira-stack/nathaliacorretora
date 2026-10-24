@@ -127,9 +127,7 @@ export default function App() {
 
   const handleOpenAdmin = () => {
     const token = getAuthToken();
-    if (token) {
-      setIsAdminLoggedIn(true);
-    }
+    setIsAdminLoggedIn(Boolean(token));
     setIsAdminOpen(true);
   };
 
@@ -740,6 +738,10 @@ export default function App() {
             siteSettings={settings}
             onRefreshSettings={loadData}
             onClose={() => setIsAdminOpen(false)}
+            onLogout={() => {
+              setIsAdminLoggedIn(false);
+              setIsAdminOpen(false);
+            }}
           />
         ) : (
           <AdminLogin

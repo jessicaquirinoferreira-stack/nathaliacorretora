@@ -13,11 +13,12 @@ import { processAndWatermarkPhoto } from '../../utils/imageWatermark';
 
 interface AdminLayoutProps {
   onClose: () => void;
+  onLogout?: () => void;
   siteSettings: SiteSettings;
   onRefreshSettings: () => void;
 }
 
-export const AdminLayout: React.FC<AdminLayoutProps> = ({ onClose, siteSettings, onRefreshSettings }) => {
+export const AdminLayout: React.FC<AdminLayoutProps> = ({ onClose, onLogout, siteSettings, onRefreshSettings }) => {
   const [activeMenu, setActiveMenu] = useState('overview');
   const [stats, setStats] = useState<any>(null);
   const [loadingStats, setLoadingStats] = useState(true);
@@ -71,9 +72,16 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onClose, siteSettings,
     loadAllAdminData();
   }, []);
 
-  const handleLogout = () => {
-    if (confirm('Deseja realmente sair da área administrativa?')) {
-      setAuthToken(null);
+  const handleLogout = async () => {
+    try {
+      await api.adminLogout();
+    } catch (e) {
+      console.warn('Logout notice:', e);
+    }
+    setAuthToken(null);
+    if (onLogout) {
+      onLogout();
+    } else {
       onClose();
     }
   };
@@ -206,9 +214,18 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onClose, siteSettings,
             })}
           </div>
 
-          <div className="p-4 border-t border-slate-800 text-[11px] text-slate-400">
-            <p className="font-semibold text-slate-300">Nathalia Robadey Imóveis</p>
-            <p className="text-[10px]">Versão 2.4 Production</p>
+          <div className="p-3 border-t border-slate-800 space-y-2">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center space-x-2.5 px-3 py-2 rounded text-xs font-semibold text-red-300 hover:text-white bg-red-950/40 hover:bg-red-900/70 border border-red-800/50 transition-all cursor-pointer"
+            >
+              <LogOut className="w-4 h-4 text-red-400" />
+              <span>Sair do Painel</span>
+            </button>
+            <div className="text-[11px] text-slate-500 px-1 pt-0.5">
+              <p className="font-semibold text-slate-400">Nathalia Robadey Imóveis</p>
+              <p className="text-[10px]">Versão 2.4 Production</p>
+            </div>
           </div>
         </aside>
 

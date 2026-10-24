@@ -170,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigateTab, onOpenA
           </button>
 
           <p className="text-[11px] text-slate-400">
-            Design & Tecnologia Imobiliária de Alto Padrão
+            Tecnologia & Gestão Imobiliária
           </p>
         </div>
       </div>

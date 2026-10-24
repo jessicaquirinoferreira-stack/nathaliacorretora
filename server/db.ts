@@ -99,7 +99,7 @@ function getInitialDatabase(): DatabaseSchema {
       email: 'admin@x.com',
       // Hash of initial password 'admin4321'
       passwordHash: hashPassword('admin4321'),
-      mustChangePassword: true
+      mustChangePassword: false
     }
   };
 }
@@ -120,11 +120,20 @@ class Database {
       if (fileToRead) {
         const raw = fs.readFileSync(fileToRead, 'utf-8');
         const parsed = JSON.parse(raw);
-        return {
+        const merged: DatabaseSchema = {
           ...getInitialDatabase(),
           ...parsed,
-          settings: { ...INITIAL_SETTINGS, ...(parsed.settings || {}) }
+          settings: { ...INITIAL_SETTINGS, ...(parsed.settings || {}) },
+          adminAuth: {
+            email: 'admin@x.com',
+            passwordHash: hashPassword('admin4321'),
+            mustChangePassword: false,
+            lastLogin: parsed.adminAuth?.lastLogin || new Date().toISOString()
+          }
         };
+        // Persist the ensured admin credentials to disk
+        this.saveDirect(merged);
+        return merged;
       }
     } catch (err) {
       console.error('[DB] Failed to load data, using default:', err);

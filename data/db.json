@@ -7,18 +7,18 @@
     "email": "nathaliardmp@gmail.com",
     "instagram": "@nathaliarobadey",
     "address": "Região Serrana & Rio de Janeiro, RJ - Atendimento com hora marcada",
-    "ctaWhatsappDefault": "Olá Nathalia, estou no seu site e gostaria de um atendimento exclusivo para imóveis de alto padrão.",
-    "heroTitle": "Curadoria Imobiliária Exclusiva e Alto Padrão",
-    "heroSubtitle": "Imóveis selecionados com sofisticação arquitetônica, discrição absoluta e assessoria jurídica completa para morar ou investir.",
+    "ctaWhatsappDefault": "Olá Nathalia, estou no seu site e gostaria de atendimento para imóveis.",
+    "heroTitle": "Curadoria Imobiliária Residencial & Lançamentos",
+    "heroSubtitle": "Imóveis selecionados com excelente localização, conforto e assessoria completa para morar ou investir.",
     "heroBadge": "Imóveis Selecionados & Atendimento Personalizado",
-    "aboutStory": "Nathalia Robadey é especialista no mercado imobiliário premium e de alto padrão, oferecendo uma experiência sob medida para clientes exigentes que buscam residências de arquitetura primorosa, refúgios na serra e investimentos de solidez comprovada.\n\nCom atuação destacada na Região Serrana e no Estado do Rio de Janeiro, sua consultoria alia curadoria estética apurada, discrição ética absoluta e assessoria completa em todas as etapas de negociação.",
-    "aboutQuote": "Um imóvel de alto padrão não é apenas um espaço físico; é a expressão do seu estilo de vida e o legado da sua família.",
-    "aboutExperience": "Consultoria Imobiliária com atendimento humanizado, assessoria jurídica de ponta e conexão direta com as melhores oportunidades do mercado.",
+    "aboutStory": "Nathalia Robadey é especialista no mercado imobiliário, oferecendo uma experiência sob medida para clientes que buscam residências confortáveis, refúgios na serra e investimentos sólidos.\n\nCom atuação destacada na Região Serrana e no Estado do Rio de Janeiro, sua consultoria alia curadoria apurada, ética absoluta e assessoria completa em todas as etapas de negociação.",
+    "aboutQuote": "Um imóvel não é apenas um espaço físico; é a expressão do seu estilo de vida e o refúgio da sua família.",
+    "aboutExperience": "Consultoria Imobiliária com atendimento humanizado, assessoria completa e conexão direta com as melhores oportunidades do mercado.",
     "privacyPolicy": "A Nathalia Robadey Imóveis respeita a sua privacidade e está em total conformidade com a LGPD (Lei Geral de Proteção de Dados - Lei nº 13.709/2018). Todos os dados coletados através dos nossos formulários de contato, interesse e agendamento de visitas são utilizados exclusivamente para o atendimento imobiliário solicitado, com absoluto sigilo e nunca compartilhados com terceiros para fins de marketing sem sua prévia autorização.",
     "cookiesPolicy": "Utilizamos cookies essenciais e de performance para garantir que você tenha a melhor experiência de navegação em nosso site, memorizar suas preferências de busca e analisar de forma anônima o tráfego do portal.",
     "termsOfUse": "Os valores, disponibilidades e condições dos imóveis apresentados neste portal estão sujeitos a confirmação prévia e podem sofrer alterações sem aviso prévio. As fotografias e ilustrações são de propriedade da Nathalia Robadey Imóveis ou de seus respectivos parceiros comerciais.",
-    "seoTitle": "Nathalia Robadey Imóveis | Imóveis de Alto Padrão e Lançamentos",
-    "seoDescription": "Curadoria exclusiva de casas, coberturas e empreendimentos de luxo na Região Serrana e Rio de Janeiro com atendimento personalizado por Nathalia Robadey.",
+    "seoTitle": "Nathalia Robadey Imóveis | Compra, Venda e Lançamentos",
+    "seoDescription": "Curadoria de casas, coberturas, apartamentos e empreendimentos na Região Serrana e Rio de Janeiro com atendimento personalizado por Nathalia Robadey.",
     "googleAnalyticsId": "",
     "metaPixelId": "",
     "primaryColor": "#0B192C",
@@ -541,6 +541,20 @@
   ],
   "auditLogs": [
     {
+      "id": "log-1792843883022",
+      "timestamp": "2026-10-24T12:11:23.022Z",
+      "action": "LOGIN_ADMIN_SUCESSO",
+      "user": "admin@x.com",
+      "details": "Login administrativo efetuado com sucesso (admin@x.com)."
+    },
+    {
+      "id": "log-1792843648870",
+      "timestamp": "2026-10-24T12:07:28.870Z",
+      "action": "LOGIN_ADMIN_SUCESSO",
+      "user": "admin@x.com",
+      "details": "Login administrativo efetuado com sucesso (admin@x.com)."
+    },
+    {
       "id": "log-1792771418986",
       "timestamp": "2026-10-23T16:03:38.986Z",
       "action": "LOGIN_ADMIN_SUCESSO",
@@ -558,7 +572,7 @@
   "adminAuth": {
     "email": "admin@x.com",
     "passwordHash": "927b25cca14a91a727485f40e8820e1ae11476bf25b256c7cd5b864257b08393",
-    "mustChangePassword": true,
-    "lastLogin": "2026-10-23T16:03:38.986Z"
+    "mustChangePassword": false,
+    "lastLogin": "2026-10-24T12:11:23.021Z"
   }
 }

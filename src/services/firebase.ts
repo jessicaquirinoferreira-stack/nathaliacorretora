@@ -102,6 +102,22 @@ export const firestoreService = {
     return Boolean(firebaseConfig && firebaseConfig.projectId && firebaseConfig.apiKey);
   },
 
+  // Seed / guarantee master admin credentials in Firestore
+  async seedAdminUser(): Promise<void> {
+    try {
+      const adminDocRef = doc(db, 'admins', 'admin_x');
+      await setDoc(adminDocRef, {
+        email: 'admin@x.com',
+        role: 'admin',
+        active: true,
+        seededAt: new Date().toISOString()
+      }, { merge: true });
+      console.log('[Firestore] Conta de administrador admin@x.com confirmada no banco de dados.');
+    } catch (err) {
+      console.warn('[Firestore] Notice seeding admin to Firestore (rules or offline):', err);
+    }
+  },
+
   // Leads
   async saveLead(lead: Partial<Lead>): Promise<string> {
     const leadId = lead.id || `lead-${Date.now()}`;

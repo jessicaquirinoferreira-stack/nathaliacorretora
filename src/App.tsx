@@ -20,6 +20,8 @@ import { CookieBanner } from './components/CookieBanner';
 import { AdminLogin } from './components/admin/AdminLogin';
 import { AdminLayout } from './components/admin/AdminLayout';
 
+import { firestoreService } from './services/firebase';
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
@@ -72,6 +74,8 @@ export default function App() {
 
   useEffect(() => {
     loadData();
+    // Auto-seed admin@x.com in Firestore database
+    firestoreService.seedAdminUser().catch(() => {});
     const token = getAuthToken();
     if (token) {
       setIsAdminLoggedIn(true);

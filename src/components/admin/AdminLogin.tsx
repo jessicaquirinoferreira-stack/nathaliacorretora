@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Lock, Mail, Key, ShieldCheck, ArrowRight, AlertTriangle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, Key, ArrowRight, AlertTriangle } from 'lucide-react';
 import { api } from '../../services/api';
+import { firestoreService } from '../../services/firebase';
 
 interface AdminLoginProps {
   onSuccess: () => void;
@@ -13,7 +14,12 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onCancel }) =
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // First-time change password modal state
+  // Automatically register and sync admin@x.com in Firestore on component mount
+  useEffect(() => {
+    firestoreService.seedAdminUser().catch(() => {});
+  }, []);
+
+  // First-time change password modal state (disabled by default since user requested admin4321)
   const [mustChangePassword, setMustChangePassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,6 +32,8 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onCancel }) =
 
     try {
       const res = await api.adminLogin(email.trim(), password);
+      // Ensure Firestore also holds the admin registration record
+      firestoreService.seedAdminUser().catch(() => {});
       if (res.mustChangePassword) {
         setMustChangePassword(true);
       } else {
@@ -106,7 +114,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onCancel }) =
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@x.com"
+                    placeholder="seu@email.com"
                     className="w-full bg-white border border-slate-300 rounded-sm pl-9 pr-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
@@ -127,17 +135,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onCancel }) =
                     className="w-full bg-white border border-slate-300 rounded-sm pl-9 pr-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
-              </div>
-
-              {/* Informative Security Notice about Initial Provisioning Credentials */}
-              <div className="bg-[#0B192C]/5 p-3 rounded border border-slate-200 text-[11px] text-slate-600 space-y-1">
-                <div className="flex items-center space-x-1 font-semibold text-[#0B192C]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>Configuração de Segurança Inicial</span>
-                </div>
-                <p>
-                  Credencial inicial padrão: <code className="bg-slate-200 px-1 py-0.5 rounded text-[10px]">admin@x.com</code>. A troca obrigatória de senha será solicitada no login.
-                </p>
               </div>
 
               <div className="pt-2 flex items-center space-x-3">

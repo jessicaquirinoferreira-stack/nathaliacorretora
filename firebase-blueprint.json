@@ -86,16 +86,32 @@
         "watermarkText": { "type": "string", "description": "Default watermark label" },
         "watermarkEnabled": { "type": "boolean", "description": "Whether watermark is auto applied" }
       }
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Administrator account credentials and role metadata",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Admin login email" },
+        "role": { "type": "string", "description": "admin or superadmin" },
+        "active": { "type": "boolean", "description": "Active account status" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["email", "role"]
     }
   },
   "firestore": {
+    "/admins/{adminId}": {
+      "schema": { "$ref": "Admin" },
+      "description": "Admin users collection and authentication metadata"
+    },
     "/properties/{propertyId}": {
       "schema": { "$ref": "Property" },
-      "description": "Publicly readable collection of luxury property listings, managed by broker admin"
+      "description": "Publicly readable collection of property listings, managed by broker admin"
     },
     "/developments/{developmentId}": {
       "schema": { "$ref": "Development" },
-      "description": "Luxury launches and developments collection"
+      "description": "Launches and developments collection"
     },
     "/leads/{leadId}": {
       "schema": { "$ref": "Lead" },

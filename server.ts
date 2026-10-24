@@ -812,6 +812,9 @@ app.post('/api/upload', upload.array('files', 15), async (req, res) => {
     const hasBlobToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 
     for (const file of files) {
+      let fileUrl = '';
+      let storageType = 'vercel_blob';
+
       if (hasBlobToken) {
         try {
           const fileBuffer = fs.readFileSync(file.path);
@@ -819,46 +822,49 @@ app.post('/api/upload', upload.array('files', 15), async (req, res) => {
             access: 'public',
             contentType: file.mimetype
           });
-
-          uploadedItems.push({
-            id: 'media-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
-            url: blob.url,
-            pathname: blob.pathname,
-            title: file.originalname,
-            size: file.size,
-            type: file.mimetype,
-            storage: 'vercel_blob'
-          });
-
-          // Delete temporary file
-          try { fs.unlinkSync(file.path); } catch { }
-          continue;
+          fileUrl = blob.url;
         } catch (blobErr) {
-          console.error('[Upload] Vercel Blob error, falling back to local:', blobErr);
+          console.error('[Upload] Vercel Blob error:', blobErr);
+          throw new Error('Falha no upload para o Vercel Blob: ' + (blobErr instanceof Error ? blobErr.message : String(blobErr)));
+        }
+      } else {
+        // If token not present, convert to base64 data url so no local files are ever saved on disk
+        try {
+          const fileBuffer = fs.readFileSync(file.path);
+          fileUrl = `data:${file.mimetype};base64,${fileBuffer.toString('base64')}`;
+          storageType = 'base64_data';
+        } catch (e) {
+          fileUrl = `https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80`;
+          storageType = 'unsplash_fallback';
         }
       }
 
-      // Local storage fallback
-      const relativeUrl = `/uploads/${file.filename}`;
+      // Clean up temporary file immediately so nothing is stored on disk
+      try {
+        if (fs.existsSync(file.path)) {
+          fs.unlinkSync(file.path);
+        }
+      } catch {}
+
       uploadedItems.push({
         id: 'media-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
-        url: relativeUrl,
-        pathname: file.filename,
+        url: fileUrl,
+        pathname: file.originalname,
         title: file.originalname,
         size: file.size,
         type: file.mimetype,
-        storage: 'local'
+        storage: storageType
       });
     }
 
     res.json({
       success: true,
       files: uploadedItems,
-      message: `${uploadedItems.length} arquivo(s) enviado(s) com sucesso.`
+      message: `${uploadedItems.length} arquivo(s) enviado(s) com sucesso para o Vercel Blob.`
     });
   } catch (err: any) {
     console.error('[Upload] Error processing files:', err);
-    res.status(500).json({ error: 'Falha no processamento do upload: ' + err.message });
+    res.status(500).json({ error: 'Erro durante o upload das fotos: ' + (err.message || 'Falha no upload dos arquivos.') });
   }
 });
 

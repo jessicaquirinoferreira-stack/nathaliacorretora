@@ -6,7 +6,12 @@ import {
 } from 'lucide-react';
 import { api, getAuthToken } from './services/api';
 import { Property, Development, SiteSettings, LandingPage } from './types';
-import { INITIAL_SETTINGS } from './data/initialData';
+import { 
+  INITIAL_SETTINGS, 
+  INITIAL_PROPERTIES, 
+  INITIAL_DEVELOPMENTS, 
+  INITIAL_LANDING_PAGES 
+} from './data/initialData';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PropertyCard } from './components/PropertyCard';
@@ -57,9 +62,9 @@ export default function App() {
     try {
       const [sett, props, devs, lps] = await Promise.all([
         api.getSettings().catch(() => INITIAL_SETTINGS),
-        api.getProperties().catch(() => []),
-        api.getDevelopments().catch(() => []),
-        api.getLandingPages().catch(() => [])
+        api.getProperties().catch(() => INITIAL_PROPERTIES),
+        api.getDevelopments().catch(() => INITIAL_DEVELOPMENTS),
+        api.getLandingPages().catch(() => INITIAL_LANDING_PAGES)
       ]);
       setSettings(sett);
       setProperties(props);
@@ -74,12 +79,51 @@ export default function App() {
 
   useEffect(() => {
     loadData();
-    // Auto-seed admin@x.com in Firestore database
+    // Auto-seed admin credentials and initial data in Firestore if empty
     firestoreService.seedAdminUser().catch(() => {});
+    firestoreService.seedInitialCatalog(
+      INITIAL_PROPERTIES, 
+      INITIAL_DEVELOPMENTS, 
+      INITIAL_SETTINGS, 
+      INITIAL_LANDING_PAGES
+    ).catch(() => {});
+
     const token = getAuthToken();
     if (token) {
       setIsAdminLoggedIn(true);
     }
+
+    // Inscrição em tempo real no Firestore para sincronização instantânea mundial (Vercel & Clientes)
+    const unsubProps = firestoreService.subscribeProperties((updatedProps) => {
+      if (updatedProps && updatedProps.length > 0) {
+        setProperties(updatedProps);
+      }
+    });
+
+    const unsubDevs = firestoreService.subscribeDevelopments((updatedDevs) => {
+      if (updatedDevs && updatedDevs.length > 0) {
+        setDevelopments(updatedDevs);
+      }
+    });
+
+    const unsubSettings = firestoreService.subscribeSettings((updatedSettings) => {
+      if (updatedSettings) {
+        setSettings(prev => ({ ...prev, ...updatedSettings }));
+      }
+    });
+
+    const unsubLandingPages = firestoreService.subscribeLandingPages((updatedPages) => {
+      if (updatedPages && updatedPages.length > 0) {
+        setLandingPages(updatedPages);
+      }
+    });
+
+    return () => {
+      unsubProps();
+      unsubDevs();
+      unsubSettings();
+      unsubLandingPages();
+    };
   }, []);
 
   // Filter properties
@@ -737,7 +781,10 @@ export default function App() {
           <AdminLayout
             siteSettings={settings}
             onRefreshSettings={loadData}
-            onClose={() => setIsAdminOpen(false)}
+            onClose={() => {
+              loadData();
+              setIsAdminOpen(false);
+            }}
             onLogout={() => {
               setIsAdminLoggedIn(false);
               setIsAdminOpen(false);

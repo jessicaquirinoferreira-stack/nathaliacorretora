@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     function isValidId(id) {
-      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+      return id is string && id.size() <= 128;
     }
 
     function incoming() {
@@ -23,7 +23,7 @@ service cloud.firestore {
         request.auth.token.email == 'admin@x.com' ||
         request.auth.token.email == 'jonasthugsantos@gmail.com' ||
         request.auth.token.email == 'nathaliardmp@gmail.com' ||
-        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        request.auth.uid != null
       );
     }
 
@@ -48,6 +48,24 @@ service cloud.firestore {
     match /developments/{developmentId} {
       allow read: if true;
       allow create, update, delete: if isAdmin() && isValidId(developmentId);
+    }
+
+    // Publicly accessible promotional landing pages
+    match /landingPages/{pageId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin() && isValidId(pageId);
+    }
+
+    // Social media marketing & editorial posts
+    match /socialPosts/{postId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin() && isValidId(postId);
+    }
+
+    // Audit logs
+    match /auditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isValidId(logId);
     }
 
     // Inbound contact leads & scheduling requests

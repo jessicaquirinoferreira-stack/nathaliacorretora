@@ -60,6 +60,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ onClose, onLogout, sit
       setAuditLogs(al);
       setUploadStatus(us);
       setFirebaseStatus(fs);
+
+      // Sincroniza em tempo real com o site público
+      if (onRefreshSettings) {
+        onRefreshSettings();
+      }
     } catch (err) {
       console.error('Failed to load admin data:', err);
     } finally {
@@ -1236,40 +1241,641 @@ const PropertiesModule: React.FC<{ properties: Property[]; onRefresh: () => void
 // 4. DEVELOPMENTS MODULE (CRUD)
 // ==========================================
 const DevelopmentsModule: React.FC<{ developments: Development[]; onRefresh: () => void }> = ({ developments, onRefresh }) => {
+  const [editingDev, setEditingDev] = useState<Partial<Development> | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [uploadingPhotos, setUploadingPhotos] = useState(false);
+  const [uploadProgressText, setUploadProgressText] = useState('');
+  const [newFeatureText, setNewFeatureText] = useState('');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const handleAddNew = () => {
+    setEditingDev({
+      title: '',
+      developer: 'Nathalia Robadey Imóveis',
+      location: 'Mury, Nova Friburgo - RJ',
+      city: 'Nova Friburgo',
+      neighborhood: 'Mury',
+      type: 'Condomínio Fechado',
+      status: 'pre_launch',
+      startingPrice: 1500000,
+      deliveryForecast: 'Dezembro de 2026',
+      unitsCount: '24 unidades exclusivas',
+      features: ['Portaria Blindada 24h', 'Piscina Aquecida', 'Quadra de Tênis de Saibro', 'Heliponto Homologado', 'Bosque com Trilha Privativa'],
+      gallery: [],
+      coverImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80',
+      brochurePdfUrl: '',
+      isFeatured: true,
+      order: developments.length + 1,
+      ctaText: 'Agendar Apresentação Exclusiva',
+      description: 'Lançamento de altíssimo padrão cercado pela Mata Atlântica preservada, unindo arquitetura contemporânea, privacidade e infraestrutura de lazer internacional.'
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (dev: Development) => {
+    setEditingDev({ ...dev });
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async (id: string, title: string) => {
+    if (confirm(`Tem certeza que deseja excluir o empreendimento "${title}"? Esta ação removerá o lançamento do site.`)) {
+      try {
+        await api.deleteDevelopment(id);
+        onRefresh();
+      } catch (err: any) {
+        alert(err.message || 'Erro ao excluir empreendimento.');
+      }
+    }
+  };
+
+  const handleUploadPhotos = async (files: FileList | null) => {
+    if (!files || files.length === 0 || !editingDev) return;
+    setUploadingPhotos(true);
+    const fileArray = Array.from(files);
+    const processedFiles: File[] = [];
+
+    try {
+      for (let i = 0; i < fileArray.length; i++) {
+        const file = fileArray[i];
+        setUploadProgressText(`Processando foto ${i + 1}/${fileArray.length}: redimensionando e aplicando marca d’água oficial...`);
+        const processed = await processAndWatermarkPhoto(file, {
+          maxWidth: 1920,
+          maxHeight: 1280,
+          quality: 0.88,
+          position: 'bottom-right'
+        });
+        processedFiles.push(processed);
+      }
+
+      setUploadProgressText(`Enviando ${processedFiles.length} foto(s) para o armazenamento...`);
+      const res = await api.uploadFiles(processedFiles);
+
+      const newMediaItems = (res.files || []).map((f: any, idx: number) => ({
+        id: f.id || `media-dev-${Date.now()}-${idx}`,
+        url: f.url,
+        title: f.title || 'Foto do Empreendimento',
+        isCover: false
+      }));
+
+      const existingGallery = editingDev.gallery || [];
+      const updatedGallery = [...existingGallery, ...newMediaItems];
+      const newCover = (!editingDev.coverImage || editingDev.coverImage.includes('unsplash')) && updatedGallery[0]
+        ? updatedGallery[0].url
+        : (editingDev.coverImage || (updatedGallery[0] ? updatedGallery[0].url : ''));
+
+      setEditingDev({
+        ...editingDev,
+        gallery: updatedGallery,
+        coverImage: newCover
+      });
+      setUploadProgressText('Fotos salvas com sucesso!');
+      setTimeout(() => setUploadProgressText(''), 3000);
+    } catch (err: any) {
+      alert('Erro durante o upload das fotos: ' + (err.message || 'Verifique sua conexão.'));
+    } finally {
+      setUploadingPhotos(false);
+    }
+  };
+
+  const handleSetCover = (url: string) => {
+    if (!editingDev) return;
+    const updatedGallery = (editingDev.gallery || []).map(g => ({
+      ...g,
+      isCover: g.url === url
+    }));
+    setEditingDev({
+      ...editingDev,
+      coverImage: url,
+      gallery: updatedGallery
+    });
+  };
+
+  const handleRemovePhoto = (url: string) => {
+    if (!editingDev) return;
+    const updatedGallery = (editingDev.gallery || []).filter(g => g.url !== url);
+    let newCover = editingDev.coverImage;
+    if (newCover === url) {
+      newCover = updatedGallery[0] ? updatedGallery[0].url : '';
+    }
+    setEditingDev({
+      ...editingDev,
+      gallery: updatedGallery,
+      coverImage: newCover
+    });
+  };
+
+  const handleAddFeature = () => {
+    if (!newFeatureText.trim() || !editingDev) return;
+    const currentFeatures = editingDev.features || [];
+    if (!currentFeatures.includes(newFeatureText.trim())) {
+      setEditingDev({
+        ...editingDev,
+        features: [...currentFeatures, newFeatureText.trim()]
+      });
+    }
+    setNewFeatureText('');
+  };
+
+  const handleRemoveFeature = (feat: string) => {
+    if (!editingDev) return;
+    setEditingDev({
+      ...editingDev,
+      features: (editingDev.features || []).filter(f => f !== feat)
+    });
+  };
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingDev || !editingDev.title) {
+      alert('Por favor, informe o título do empreendimento.');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      if (editingDev.id) {
+        await api.updateDevelopment(editingDev.id, editingDev);
+      } else {
+        await api.createDevelopment(editingDev);
+      }
+      setIsModalOpen(false);
+      onRefresh();
+    } catch (err: any) {
+      alert(err.message || 'Erro ao salvar empreendimento.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const filteredDevs = developments.filter(d => {
+    if (filterStatus !== 'all' && d.status !== filterStatus) return false;
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      return (
+        d.title.toLowerCase().includes(term) ||
+        (d.developer && d.developer.toLowerCase().includes(term)) ||
+        (d.location && d.location.toLowerCase().includes(term)) ||
+        (d.neighborhood && d.neighborhood.toLowerCase().includes(term))
+      );
+    }
+    return true;
+  });
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#0B192C]">
-            Empreendimentos & Condomínios Fechados
+            Empreendimentos & Lançamentos Exclusivos
           </h2>
           <p className="text-xs text-slate-500">
-            Gerencie os lançamentos imobiliários, incorporadoras parceiras e previsão de entrega.
+            Cadastre novos condomínios fechados, edite perspectivas 3D, fotos com marca d'água e sincronize em tempo real.
           </p>
+        </div>
+
+        <button
+          onClick={handleAddNew}
+          className="inline-flex items-center space-x-2 bg-[#0B192C] hover:bg-[#1E293B] text-white text-xs uppercase tracking-wider font-semibold px-4 py-2.5 rounded-sm transition-colors cursor-pointer"
+        >
+          <Plus className="w-4 h-4 text-[#C5A059]" />
+          <span>Cadastrar Novo Empreendimento</span>
+        </button>
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="flex items-center space-x-2 w-full sm:w-auto">
+          <Search className="w-4 h-4 text-slate-400" />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Buscar por nome, construtora ou bairro..."
+            className="w-full sm:w-72 bg-[#FAF9F5] border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-[#C5A059]"
+          />
+        </div>
+
+        <div className="flex items-center space-x-2 w-full sm:w-auto">
+          <span className="text-slate-500 font-semibold uppercase text-[10px]">Status:</span>
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+            className="bg-[#FAF9F5] border border-slate-300 rounded px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-[#C5A059]"
+          >
+            <option value="all">Todos os Status ({developments.length})</option>
+            <option value="pre_launch">Breve Lançamento</option>
+            <option value="in_construction">Em Obras</option>
+            <option value="ready">Pronto para Morar</option>
+          </select>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {developments.map((dev) => (
-          <div key={dev.id} className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
-            <div className="relative aspect-video">
-              <img src={dev.coverImage} alt={dev.title} className="w-full h-full object-cover" />
-              <div className="absolute top-3 left-3 bg-[#C5A059] text-[#0B192C] font-bold text-[10px] px-2.5 py-1 rounded uppercase">
-                {dev.status}
+      {/* Developments Grid */}
+      {filteredDevs.length === 0 ? (
+        <div className="bg-white p-12 text-center rounded-lg border border-slate-200 shadow-sm text-slate-500">
+          <Building2 className="w-10 h-10 text-slate-300 mx-auto mb-2" />
+          <p className="font-semibold text-slate-700">Nenhum empreendimento encontrado.</p>
+          <p className="text-xs text-slate-400 mt-1">Clique em "Cadastrar Novo Empreendimento" para adicionar o primeiro.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredDevs.map((dev) => (
+            <div key={dev.id} className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div>
+                <div className="relative aspect-video">
+                  <img src={dev.coverImage} alt={dev.title} className="w-full h-full object-cover" />
+                  <div className="absolute top-3 left-3 bg-[#C5A059] text-[#0B192C] font-bold text-[10px] px-2.5 py-1 rounded uppercase shadow-sm">
+                    {dev.status === 'pre_launch' ? 'Breve Lançamento' : dev.status === 'in_construction' ? 'Em Obras' : 'Pronto para Morar'}
+                  </div>
+                  {dev.isFeatured && (
+                    <div className="absolute top-3 right-3 bg-[#0B192C]/90 text-[#E5C989] font-bold text-[10px] px-2 py-0.5 rounded shadow">
+                      ⭐ Destaque
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h3 className="font-serif-luxury text-xl font-bold text-[#0B192C]">{dev.title}</h3>
+                      <p className="text-xs text-slate-500 font-medium">{dev.developer} • {dev.location || `${dev.neighborhood}, ${dev.city}`}</p>
+                    </div>
+                    {dev.startingPrice ? (
+                      <span className="text-xs font-bold text-[#C5A059] whitespace-nowrap">
+                        A partir de R$ {dev.startingPrice.toLocaleString('pt-BR')}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">{dev.description}</p>
+
+                  {dev.features && dev.features.length > 0 && (
+                    <div className="flex flex-wrap gap-1 pt-1">
+                      {dev.features.slice(0, 4).map((f, idx) => (
+                        <span key={idx} className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[10px]">
+                          {f}
+                        </span>
+                      ))}
+                      {dev.features.length > 4 && (
+                        <span className="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px]">
+                          +{dev.features.length - 4} mais
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="font-semibold text-slate-700">Previsão: {dev.deliveryForecast || 'Sob consulta'}</span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => handleEdit(dev)}
+                    className="p-1.5 text-slate-700 hover:text-black bg-white hover:bg-slate-200 border border-slate-200 rounded cursor-pointer transition-colors"
+                    title="Editar empreendimento"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(dev.id, dev.title)}
+                    className="p-1.5 text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 border border-red-200 rounded cursor-pointer transition-colors"
+                    title="Excluir empreendimento"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="p-5 space-y-2">
-              <h3 className="font-serif-luxury text-xl font-bold text-[#0B192C]">{dev.title}</h3>
-              <p className="text-xs text-slate-500">{dev.developer} • {dev.location}</p>
-              <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">{dev.description}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Development Edit / Create Modal */}
+      {isModalOpen && editingDev && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl max-w-3xl w-full p-6 space-y-4 my-8 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b pb-3">
+              <h3 className="font-serif-luxury text-xl font-bold text-[#0B192C]">
+                {editingDev.id ? `Editar Empreendimento: ${editingDev.title}` : 'Cadastrar Novo Empreendimento'}
+              </h3>
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-black">✕</button>
             </div>
-            <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-semibold text-slate-700">Previsão: {dev.deliveryForecast || 'Sob consulta'}</span>
-              <span className="text-[11px] text-[#C5A059] font-bold uppercase">Ativo</span>
-            </div>
+
+            <form onSubmit={handleSave} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="sm:col-span-2">
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Título do Empreendimento *</label>
+                  <input
+                    type="text"
+                    required
+                    value={editingDev.title || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, title: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: Reserva Imperial das Araucárias"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Incorporadora / Construtora</label>
+                  <input
+                    type="text"
+                    value={editingDev.developer || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, developer: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: Robadey Engenharia & Construções"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Status do Lançamento</label>
+                  <select
+                    value={editingDev.status || 'pre_launch'}
+                    onChange={(e) => setEditingDev({ ...editingDev, status: e.target.value as any })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                  >
+                    <option value="pre_launch">Breve Lançamento (Cadastros Antecipados)</option>
+                    <option value="in_construction">Em Obras (Construção Ativa)</option>
+                    <option value="ready">Pronto para Morar (Entrega Imediata)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Cidade</label>
+                  <input
+                    type="text"
+                    value={editingDev.city || 'Nova Friburgo'}
+                    onChange={(e) => setEditingDev({ ...editingDev, city: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Bairro / Região</label>
+                  <input
+                    type="text"
+                    value={editingDev.neighborhood || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, neighborhood: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: Mury"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Preço Inicial (A partir de R$)</label>
+                  <input
+                    type="number"
+                    value={editingDev.startingPrice || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, startingPrice: Number(e.target.value) || undefined })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: 1800000"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Previsão de Entrega</label>
+                  <input
+                    type="text"
+                    value={editingDev.deliveryForecast || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, deliveryForecast: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: Dezembro de 2026"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Quantidade de Unidades / Lotes</label>
+                  <input
+                    type="text"
+                    value={editingDev.unitsCount || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, unitsCount: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: 18 casas exclusivas"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Tipo de Empreendimento</label>
+                  <input
+                    type="text"
+                    value={editingDev.type || 'Condomínio Fechado'}
+                    onChange={(e) => setEditingDev({ ...editingDev, type: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Ex: Condomínio Fechado de Casas"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Texto do Botão de Ação (CTA)</label>
+                  <input
+                    type="text"
+                    value={editingDev.ctaText || 'Agendar apresentação exclusiva'}
+                    onChange={(e) => setEditingDev({ ...editingDev, ctaText: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">URL do Book Técnico / PDF (Opcional)</label>
+                  <input
+                    type="text"
+                    value={editingDev.brochurePdfUrl || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, brochurePdfUrl: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="https://..."
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block font-semibold uppercase text-slate-700 mb-1">Descrição Detalhada do Empreendimento</label>
+                  <textarea
+                    rows={4}
+                    value={editingDev.description || ''}
+                    onChange={(e) => setEditingDev({ ...editingDev, description: e.target.value })}
+                    className="w-full bg-[#FAF9F5] border border-slate-300 rounded px-3 py-2 text-xs text-slate-800"
+                    placeholder="Apresentação da infraestrutura, localização e conceito do projeto..."
+                  />
+                </div>
+
+                {/* Diferenciais / Features */}
+                <div className="sm:col-span-2 space-y-2 bg-[#FAF9F5] p-3 rounded border border-slate-200">
+                  <label className="block font-semibold uppercase text-slate-700">Diferenciais & Infraestrutura de Lazer</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={newFeatureText}
+                      onChange={(e) => setNewFeatureText(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddFeature(); } }}
+                      placeholder="Ex: Heliponto, Quadra de Tênis, Spa..."
+                      className="flex-1 bg-white border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddFeature}
+                      className="bg-[#0B192C] text-white px-3 py-1.5 rounded font-bold uppercase text-[10px]"
+                    >
+                      Adicionar
+                    </button>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {(editingDev.features || []).map((feat, idx) => (
+                      <span key={idx} className="bg-white border border-slate-300 text-slate-800 px-2.5 py-1 rounded text-xs flex items-center space-x-1">
+                        <span>{feat}</span>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFeature(feat)}
+                          className="text-red-500 hover:text-red-700 font-bold ml-1"
+                        >
+                          ✕
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Upload and Photos Section */}
+                <div className="sm:col-span-2 space-y-3 bg-[#FAF9F5] p-4 rounded-lg border border-slate-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <span className="font-bold uppercase text-[#0B192C] text-xs flex items-center space-x-1.5">
+                        <UploadCloud className="w-4 h-4 text-[#C5A059]" />
+                        <span>Perspectivas 3D & Fotografias do Empreendimento</span>
+                      </span>
+                      <p className="text-[11px] text-slate-500 mt-0.5">
+                        As fotos são redimensionadas em Full HD com aplicação de marca d'água oficial transparente automática.
+                      </p>
+                    </div>
+
+                    <label className={`inline-flex items-center space-x-2 bg-[#0B192C] hover:bg-[#1E293B] text-[#E5C989] px-4 py-2 rounded font-bold text-xs uppercase tracking-wider cursor-pointer shadow-md transition-all ${
+                      uploadingPhotos ? 'opacity-60 pointer-events-none' : ''
+                    }`}>
+                      <UploadCloud className="w-4 h-4 text-[#C5A059]" />
+                      <span>{uploadingPhotos ? 'Processando...' : 'Subir Fotos'}</span>
+                      <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        disabled={uploadingPhotos}
+                        onChange={(e) => handleUploadPhotos(e.target.files)}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {uploadProgressText && (
+                    <div className="bg-[#C5A059]/15 border border-[#C5A059] p-2 rounded text-xs text-[#0B192C] font-semibold flex items-center space-x-2 animate-pulse">
+                      <Sparkles className="w-4 h-4 text-[#C5A059] animate-spin" />
+                      <span>{uploadProgressText}</span>
+                    </div>
+                  )}
+
+                  {/* Photo Gallery Grid */}
+                  {editingDev.gallery && editingDev.gallery.length > 0 && (
+                    <div className="space-y-2 pt-2 border-t border-slate-200">
+                      <div className="flex items-center justify-between text-[11px] font-bold text-slate-700 uppercase">
+                        <span>Galeria ({editingDev.gallery.length} imagens):</span>
+                        <span className="text-slate-500 font-normal">Clique em "Definir Capa" para escolher a principal</span>
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-56 overflow-y-auto p-1">
+                        {editingDev.gallery.map((photo, pIdx) => {
+                          const isCurrentCover = photo.url === editingDev.coverImage;
+                          return (
+                            <div
+                              key={photo.id || pIdx}
+                              className={`relative group rounded-md overflow-hidden border-2 transition-all bg-black ${
+                                isCurrentCover ? 'border-[#C5A059] ring-2 ring-[#C5A059]/30 shadow-md' : 'border-slate-300 hover:border-slate-400'
+                              }`}
+                            >
+                              <div className="aspect-[4/3] w-full">
+                                <img src={photo.url} alt="" className="w-full h-full object-cover" />
+                              </div>
+
+                              {isCurrentCover && (
+                                <div className="absolute top-1 left-1 bg-[#C5A059] text-[#0B192C] font-bold text-[9px] uppercase px-1.5 py-0.5 rounded shadow">
+                                  ⭐ Capa
+                                </div>
+                              )}
+
+                              <div className="p-1.5 bg-white flex items-center justify-between gap-1 text-[10px]">
+                                {!isCurrentCover ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleSetCover(photo.url)}
+                                    className="text-[#0B192C] hover:text-[#C5A059] font-bold truncate cursor-pointer"
+                                  >
+                                    Definir Capa
+                                  </button>
+                                ) : (
+                                  <span className="text-[#C5A059] font-bold truncate">Capa Ativa</span>
+                                )}
+
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemovePhoto(photo.url)}
+                                  className="text-red-500 hover:text-red-700 font-bold cursor-pointer p-0.5"
+                                  title="Remover foto"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Manual Cover URL fallback */}
+                  <div className="pt-2 border-t border-slate-200">
+                    <label className="block font-semibold uppercase text-slate-700 text-[10px] mb-1">
+                      URL da Imagem de Capa Principal
+                    </label>
+                    <input
+                      type="text"
+                      value={editingDev.coverImage || ''}
+                      onChange={(e) => setEditingDev({ ...editingDev, coverImage: e.target.value })}
+                      className="w-full bg-white border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800"
+                      placeholder="https://... (ou selecione acima na galeria)"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 pt-4 sm:col-span-2">
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(editingDev.isFeatured)}
+                      onChange={(e) => setEditingDev({ ...editingDev, isFeatured: e.target.checked })}
+                      className="rounded text-[#C5A059]"
+                    />
+                    <span className="font-semibold text-slate-700">Destacar Empreendimento na Página Inicial</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end space-x-3 pt-4 border-t">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="px-4 py-2 border rounded text-slate-600 hover:bg-slate-100"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="px-5 py-2 bg-[#0B192C] text-white rounded font-bold uppercase tracking-wider hover:bg-[#1E293B]"
+                >
+                  {saving ? 'Gravando...' : 'Salvar Empreendimento'}
+                </button>
+              </div>
+            </form>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

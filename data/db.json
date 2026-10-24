@@ -541,6 +541,48 @@
   ],
   "auditLogs": [
     {
+      "id": "log-1792852278672",
+      "timestamp": "2026-10-24T14:31:18.672Z",
+      "action": "IMOVEL_EXCLUIDO",
+      "user": "Admin",
+      "details": "Imóvel removido: Mansão Imperial Teste (NRI-150)"
+    },
+    {
+      "id": "log-1792852273851",
+      "timestamp": "2026-10-24T14:31:13.851Z",
+      "action": "IMOVEL_CRIADO",
+      "user": "Admin",
+      "details": "Imóvel criado: Mansão Imperial Teste (NRI-150)"
+    },
+    {
+      "id": "log-1792852269139",
+      "timestamp": "2026-10-24T14:31:09.139Z",
+      "action": "EMPREENDIMENTO_EXCLUIDO",
+      "user": "Admin",
+      "details": "Empreendimento removido: Quintas da Serra Teste Atualizado"
+    },
+    {
+      "id": "log-1792852264724",
+      "timestamp": "2026-10-24T14:31:04.724Z",
+      "action": "EMPREENDIMENTO_ATUALIZADO",
+      "user": "Admin",
+      "details": "Empreendimento atualizado: Quintas da Serra Teste Atualizado"
+    },
+    {
+      "id": "log-1792852259762",
+      "timestamp": "2026-10-24T14:30:59.762Z",
+      "action": "EMPREENDIMENTO_CRIADO",
+      "user": "Admin",
+      "details": "Empreendimento criado: Quintas da Serra Teste"
+    },
+    {
+      "id": "log-1792852252602",
+      "timestamp": "2026-10-24T14:30:52.602Z",
+      "action": "LOGIN_ADMIN_SUCESSO",
+      "user": "admin@x.com",
+      "details": "Login administrativo efetuado com sucesso (admin@x.com)."
+    },
+    {
       "id": "log-1792846550539",
       "timestamp": "2026-10-24T12:55:50.539Z",
       "action": "LOGIN_ADMIN_SUCESSO",
@@ -587,6 +629,6 @@
     "email": "admin@x.com",
     "passwordHash": "927b25cca14a91a727485f40e8820e1ae11476bf25b256c7cd5b864257b08393",
     "mustChangePassword": false,
-    "lastLogin": "2026-10-24T12:55:50.539Z"
+    "lastLogin": "2026-10-24T14:30:52.601Z"
   }
 }
